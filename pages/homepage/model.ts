@@ -1,11 +1,15 @@
-export interface ProductListType {
-  id: number
-  code: string
-  name: string
-  image: string
-  remaining: number
-  unit: string
-  status: string
-  category: string
-  consumptions7days: number
+export interface ProductDataType {
+  id: number;
+  name?: string;
+  address?: string;
+  status?: string;
+  rating?: number;
+  ratingTurns?: number;
+  thumbnails?: string[];
+  phoneNumber?: string;
 }
+
+export interface ProductListDataResponseType {
+  data: ProductDataType[];
+}
+

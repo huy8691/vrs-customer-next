@@ -1,25 +1,26 @@
-
-import React, { useEffect } from "react";
-import classes from './styles.module.scss'
-import { getProductList} from "../../api";
-import {ItemProduct} from "../../../../components"
-
+import React, { useEffect, useState } from "react";
+import classes from "./styles.module.scss";
+import { getProductList } from "../../api";
+import { ProductListDataResponseType } from "../../model";
+import { ItemProduct } from "../../../../components";
 
 const NewProducts: React.FC = () => {
-    useEffect(() => {
-        getProductList()
-          .then((res) => {
-            const { data } = res;
-            console.log("data", data);
-          })
-          .catch(() => {
-          });
-      }, []);
-  
+  const [dataNewProduct, setDataNewProduct] = useState<ProductListDataResponseType["data"]>();
+  useEffect(() => {
+    getProductList()
+      .then((res) =>{
+        const { data } = res;
+        setDataNewProduct(data.data);
+      })
+      .catch(() => {});
+      
+  }, []);
+
   return (
-    <div className={classes.main}>
-      {/* <ItemProduct/> */}
-      <div>4444</div>
+    <div className={classes.listProduct}>
+      {dataNewProduct?.map((item, index) => {
+        return <ItemProduct dataProps={item} key={index+Math.random()} />;
+      })}
     </div>
   );
 };

@@ -1,12 +1,15 @@
-
 import React, { useEffect } from "react";
-import NewProducts from "./parts/newProducts"
+import { Col, Row } from "antd";
+import NewProducts from "./parts/newProducts";
 const HomePage: React.FC = () => {
-  
   return (
-    <div >
-      <NewProducts/>
-    </div>
+    <>
+      <NewProducts />
+      <Row>
+        <Col span={12}>col-12</Col>
+        <Col span={12}>col-12</Col>
+      </Row>
+    </>
   );
 };
 

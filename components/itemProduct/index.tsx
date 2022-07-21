@@ -1,24 +1,23 @@
-
-import React, { useEffect } from "react";
-import Image from 'next/image'
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import { ProductDataType } from "../../pages/homepage/model";
+import defaultImage from "../../assets/images/ProductImageComingSoon.png";
+import classes from "./styles.module.scss";
 
 type Props = {
-    img: string;
-    name: string;
-    unit: string;
-    price: number;
-    qty: number;
-  };
-  
-const ItemProduct: React.FC <Props> = (props) => {
+  dataProps: ProductDataType;
+};
+
+const ItemProduct: React.FC<Props> = (props: Props) => {
+  const [imgProduct, setImgProduct] = useState(
+    ""
+  );
   return (
-    <div>
-    <Image
-      src={props.img}
-      alt="Picture of the author"
-      width={500}
-      height={500}
-    />
+    <div className={classes.itemProduct}>
+      {props.dataProps.name}
+      <div className={classes.image}>
+        <img src={imgProduct} />
+      </div>
     </div>
   );
 };

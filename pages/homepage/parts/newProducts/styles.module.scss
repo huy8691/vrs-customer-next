@@ -1,7 +1,4 @@
-.container {
-  padding: 0 2rem;
-}
-
-.main{
-  background-color: red;
+.listProduct {
+  display: flex;
+  flex-wrap: wrap;
 }
