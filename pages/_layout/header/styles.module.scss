@@ -1,0 +1,86 @@
+
+.ant-input-suffix {
+  position: absolute;
+}
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 101;
+  right: 0;
+  @media (max-width: 575px) {
+    box-shadow: 0px 4px 4px rgba(141, 193, 155, 0.29);
+  }
+  .menuSearch {
+    @media (max-width: 575px) {
+      background-color: white;
+      margin-top: -2px;
+      .inputSearch {
+        padding: 0 20px 20px;
+      }
+    }
+  }
+
+  ~ * {
+    margin-top: 85px;
+    @media (max-width: 991px) {
+      margin-top: 68px;
+    }
+    @media (max-width: 575px) {
+      margin-top: 45px;
+    }
+  }
+  .HeaderMenu {
+    .narbarHeader {
+      z-index: 4;
+      position: relative;
+      background-color: white;
+      box-shadow: 0px 4px 4px rgba(141, 193, 155, 0.29);
+      justify-content: space-between;
+      padding: 12px 34px;
+      @media (max-width: 991px) {
+        display: flex;
+        flex-wrap: unset;
+      }
+      @media (max-width: 767px) {
+        padding: 12px 20px;
+      }
+      @media (max-width: 575px) {
+        box-shadow: none;
+      }
+      .headerSubMenu {
+        @media (min-width: 576px) {
+          display: none;
+        }
+        @media (max-width: 575px) {
+          display: block;
+        }
+      }
+    }
+    .headerSubMenu {
+      @media (max-width: 575px) {
+        display: none;
+      }
+    }
+  }
+
+  .toggleButton {
+    width: 36px;
+    height: 36px;
+    border: 1px solid #d9d9d9;
+  }
+
+  @media (max-width: 991px) {
+    .listNavbar {
+      position: absolute;
+      right: 15px;
+      top: 100%;
+      display: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+  }
+}
+

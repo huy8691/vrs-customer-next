@@ -1,16 +1,22 @@
 import React, { useEffect } from "react";
-import { Col, Row } from "antd";
-import NewProducts from "./parts/newProducts";
+import SectionNewProducts from "./parts/sectionNewProducts";
+import SectionSellingProducts from "./parts/sectionSellingProducts";
+import SectionPreOrderProducts from "./parts/sectionPreOrderProducts"
+import SectionFlashSellProducts from "./parts/sectionFlashSellProducts";
+import SectionCategoryProduct from "./parts/sectionCategoryProduct"
 const HomePage: React.FC = () => {
   return (
-    <>
-      <NewProducts />
-      <Row>
-        <Col span={12}>col-12</Col>
-        <Col span={12}>col-12</Col>
-      </Row>
-    </>
+    <div className="container">
+      <SectionFlashSellProducts/>
+      <SectionNewProducts />
+      <SectionSellingProducts/>
+      <SectionPreOrderProducts/>
+      <SectionCategoryProduct/>
+    </div>
   );
 };
 
 export default HomePage;
+
+
+

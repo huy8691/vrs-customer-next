@@ -1,0 +1,18 @@
+@import "styles/colors.scss";
+
+.itemProduct{
+    .image{
+        > span{
+            border-radius: 10px;
+            overflow: hidden;
+        }
+    }
+    
+    .priceUnit{
+        font-weight: bold;
+        .price{
+            color: $primary;
+            font-weight:normal;
+        }
+    }
+}

@@ -1,0 +1,157 @@
+
+.styleFooter {
+  background-color: #222222;
+  color: white;
+  margin-top: 0px;
+  @media (max-width: 575px) {
+    position: relative;
+    z-index: 100;
+  }
+  .itemFooter {
+    padding: 40px 0;
+    .contentCategory {
+      padding-left: 40px;
+      .titleText {
+        color: #ffffff;
+        font-size: 24px;
+        font-weight: 400;
+      }
+
+      ul {
+        margin-top: 40px;
+        padding-left: 0;
+        @media (max-width: 767px) {
+          margin-top: 40px;
+        }
+        li {
+          list-style-type: none;
+          margin-top: 15px;
+
+          .contextFooter {
+            display: inline-block;
+            color: rgba(255, 255, 255, 0.75);
+            text-transform: capitalize;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 400;
+            // @media (max-width: 991px) {
+            //   font-size: 14px;
+            // }
+            // @media (max-width: 767px) {
+            //   font-size: 12px;
+            // }
+            &::after {
+              content: "";
+              display: block;
+              width: 0;
+              height: 2px;
+              background: white;
+              transition: width 0.3s;
+              opacity: 0;
+            }
+            &:hover {
+              &::after {
+                width: 100%;
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .contentFooter {
+      .titleFooter {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding-left: 50px;
+
+        a {
+          position: absolute;
+          left: 0;
+          top: -25px;
+          .logoFt {
+            margin-top: 10px;
+          }
+        }
+
+        .titleText {
+          color: #ffffff;
+          font-size: 24px;
+
+          @media (max-width: 1199px) {
+            padding-left: 10px;
+            a {
+              top: 0;
+            }
+          }
+        }
+      }
+      font-size: 16px;
+      font-weight: 400;
+      ul.bodyFooter {
+        margin-top: 40px;
+        padding-left: 0;
+        color: rgba(255, 255, 255, 0.75);
+
+        @media (max-width: 767px) {
+          margin-top: 40px;
+        }
+      }
+
+      p {
+        color: rgba(255, 255, 255, 0.75);
+        display: inline-flex;
+        @media (max-width: 575px) {
+          display: flex;
+        }
+        @media (max-width: 767px) {
+          font-size: 12px;
+        }
+        .iconPhone {
+          margin-right: 20px;
+          @media (max-width: 991px) {
+            margin-right: 10px;
+          }
+        }
+        .iconMail {
+          margin-right: 20px;
+          @media (max-width: 991px) {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .logoFotter {
+    width: 157px;
+    height: 59px;
+  }
+
+  .confirmRegister {
+    padding: 15px 0;
+    color: rgba(255, 255, 255, 0.75);
+    border-top: 1px solid #4c4c4c;
+    font-size: 16px;
+    span {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+
+  .coppyrightFooter {
+    background-color: #000000;
+    width: 100%;
+    padding: 10px 0;
+    .groupIcon {
+      @media (max-width: 575px) {
+        flex-direction: column-reverse;
+        > * {
+          margin-top: 10px;
+        }
+      }
+    }
+  }
+}
