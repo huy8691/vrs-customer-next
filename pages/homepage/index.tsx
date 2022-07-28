@@ -4,11 +4,11 @@ import SectionSellingProducts from "./parts/sectionSellingProducts";
 import SectionPreOrderProducts from "./parts/sectionPreOrderProducts"
 import SectionFlashSellProducts from "./parts/sectionFlashSellProducts";
 import SectionCategoryProduct from "./parts/sectionCategoryProduct"
-const HomePage: React.FC = () => {
+const HomePage: React.FC = (props) => {
   return (
     <div className="container">
       <SectionFlashSellProducts/>
-      <SectionNewProducts />
+      <SectionNewProducts data={props.data} />
       <SectionSellingProducts/>
       <SectionPreOrderProducts/>
       <SectionCategoryProduct/>

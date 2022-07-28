@@ -5,17 +5,18 @@ import { getNewProductList } from "../../apiHomePage";
 import { ProductListDataResponseType } from "../../modelHomepage";
 import { ItemProduct } from "../../../../src/components";
 
-const SectionNewProducts: React.FC = () => {
+const SectionNewProducts: React.FC = (props) => {
   const [dataNewProduct, setDataNewProduct] =
-    useState<ProductListDataResponseType["data"]>();
-  useEffect(() => {
-    getNewProductList()
-      .then((res) => {
-        const { data } = res.data;
-        setDataNewProduct(data);
-      })
-      .catch(() => {});
-  }, []);
+    useState<ProductListDataResponseType["data"]>(props.data);
+    console.log("setData", props.data)
+  // useEffect(() => {
+  //   getNewProductList()
+  //     .then((res) => {
+  //       const { data } = res.data;
+  //       setDataNewProduct(data);
+  //     })
+  //     .catch(() => {});
+  // }, []);
   return (
     <div className={classes.sectionProducts}>
       <div className={classes.sectionProductsHead}>
