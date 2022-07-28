@@ -1,6 +1,6 @@
 import { AxiosResponse } from "axios";
 import {jwtAxios} from "../../src/services/jwt-axios";
-import { ProductListDataResponseType } from "./modelHomepage";
+import { ProductListDataResponseType } from "./modelHomePage";
 
 const getNewProductList = (
 ): Promise<AxiosResponse<ProductListDataResponseType>> => {

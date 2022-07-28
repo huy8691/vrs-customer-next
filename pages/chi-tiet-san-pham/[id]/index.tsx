@@ -29,6 +29,24 @@ const ProductDetail: React.FC = () => {
   );
 };
 
+
+// export async function getStaticProps(context) {
+//   const { id } = context.query
+//   const dataProductDetail = await getProductDetail(id)
+//     .then((res) => {
+//       const { data } = res.data;
+//       return data;
+//     })
+//     .catch((error) => {
+//       return error.response.data;
+//     });
+  
+//   return {
+//     props: {
+//       dataProductDetail: dataProductDetail,
+//     },
+//   };
+// }
 export default ProductDetail;
 
 

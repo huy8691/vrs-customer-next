@@ -1,22 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { Alert } from "antd";
 import classes from "../../styles.module.scss";
 import { getSellingProductList } from "../../apiHomePage";
 import { ProductListDataResponseType } from "../../modelHomepage";
 import { ItemProduct } from "../../../../src/components";
 
-const SectionSellingProducts: React.FC = () => {
-  const [dataNewProduct, setDataNewProduct] =
-    useState<ProductListDataResponseType["data"]>();
-  useEffect(() => {
-    getSellingProductList()
-      .then((res) => {
-        const { data } = res.data;
-        setDataNewProduct(data);
-      })
-      .catch(() => {});
-  }, []);
-
+const SectionSellingProducts: React.FC = ({ dataSellingProduct }) => {
   return (
     <div className={classes.sectionProducts}>
       <div className={classes.sectionProductsHead}>
@@ -25,15 +15,19 @@ const SectionSellingProducts: React.FC = () => {
           <a>Xem thêm</a>
         </Link>
       </div>
-      <div className={classes.listProduct}>
-        {dataNewProduct?.map((item, index) => {
-          return index < 6 ? (
-            <div className={classes.item} key={index + Math.random()}>
-              <ItemProduct dataProduct={item} />
-            </div>
-          ) : null;
-        })}
-      </div>
+      {dataSellingProduct.errors ? (
+        <Alert message={dataSellingProduct.message} type="error" />
+      ) : (
+        <div className={classes.listProduct}>
+          {dataSellingProduct?.map((item, index) => {
+            return index < 6 ? (
+              <div className={classes.item} key={index + Math.random()}>
+                <ItemProduct dataProduct={item} />
+              </div>
+            ) : null;
+          })}
+        </div>
+      )}
     </div>
   );
 };
