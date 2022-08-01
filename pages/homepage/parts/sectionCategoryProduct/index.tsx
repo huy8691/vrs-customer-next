@@ -1,24 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Col, Row } from "antd";
+import { Col, Row, Alert } from "antd";
 import classes from "../../styles.module.scss";
-import { getCategoryProduct } from "../../apiHomePage";
-import { CategoryProductListDataResponseType } from "../../modelHomepage";
-
-const SectionSellingProducts: React.FC = () => {
-  const [dataCategoryProduct, setDataCategoryProduct] =
-    useState<CategoryProductListDataResponseType["data"]>();
-  useEffect(() => {
-    getCategoryProduct()
-      .then((res) => {
-        const { data } = res.data;
-        setDataCategoryProduct(data);
-      })
-      .catch(() => {});
-  }, []);
+import { CategoryProductDataType } from "../../modelHomePage";
+interface Props {
+  dataCategoryProduct: any;
+}
+const SectionSellingProducts: React.FC<Props> = ({ dataCategoryProduct }) => {
   return (
-    <div className={classes.sectionCategory} >
+    <div className={classes.sectionCategory}>
       <div className="container">
         <h2>Danh mục sản phẩm</h2>
         <div>
@@ -30,24 +21,30 @@ const SectionSellingProducts: React.FC = () => {
           của người dùng.
         </div>
         <div>
-          <Row>
-            {dataCategoryProduct?.map((item, index) => {
-              return index < 6 ? (
-                <Col sm={12} md={8} key={index + Math.random()}>
-                  <div className={classes.item} >
-                    <div>{item.name}</div>
-                    <Image
-                      alt={item.name}
-                      src={item.image}
-                      layout="fixed"
-                      width="160"
-                      height="160"
-                    />
-                  </div>
-                </Col>
-              ) : null;
-            })}
-          </Row>
+          {dataCategoryProduct.errors ? (
+            <Alert message={dataCategoryProduct.message} type="error" />
+          ) : (
+            <Row>
+              {dataCategoryProduct?.map(
+                (item: CategoryProductDataType, index: number) => {
+                  return index < 6 ? (
+                    <Col sm={12} md={8} key={index + Math.random()}>
+                      <div className={classes.item}>
+                        <div>{item.name}</div>
+                        <Image
+                          alt={item.name}
+                          src={item.image}
+                          layout="fixed"
+                          width="160"
+                          height="160"
+                        />
+                      </div>
+                    </Col>
+                  ) : null;
+                }
+              )}
+            </Row>
+          )}
         </div>
       </div>
     </div>

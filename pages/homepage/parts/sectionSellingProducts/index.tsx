@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Alert } from "antd";
 import classes from "../../styles.module.scss";
-import { getSellingProductList } from "../../apiHomePage";
-import { ProductListDataResponseType } from "../../modelHomepage";
 import { ItemProduct } from "../../../../src/components";
+import { ProductDataType } from "../../modelHomePage";
 
-const SectionSellingProducts: React.FC = ({ dataSellingProduct }) => {
+interface Props {
+  dataSellingProduct: any,
+}
+const SectionSellingProducts: React.FC<Props> = ({ dataSellingProduct }) => {
   return (
     <div className={classes.sectionProducts}>
       <div className={classes.sectionProductsHead}>
         <div className={classes.sectionProductsTitle}>Sản phẩm bán chạy</div>
-        <Link href="/danhsach">
+        <Link href="/san-pham">
           <a>Xem thêm</a>
         </Link>
       </div>
@@ -19,7 +21,7 @@ const SectionSellingProducts: React.FC = ({ dataSellingProduct }) => {
         <Alert message={dataSellingProduct.message} type="error" />
       ) : (
         <div className={classes.listProduct}>
-          {dataSellingProduct?.map((item, index) => {
+          {dataSellingProduct?.map((item: ProductDataType, index:number) => {
             return index < 6 ? (
               <div className={classes.item} key={index + Math.random()}>
                 <ItemProduct dataProduct={item} />

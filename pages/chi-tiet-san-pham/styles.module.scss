@@ -1,0 +1,9 @@
+.rowSlideShow{
+  display: flex;
+  .slideShowSmall{
+    max-width:100px
+  }
+  .slideShowBig{
+    max-width:400px
+  }
+}

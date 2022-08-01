@@ -27,7 +27,7 @@ const ItemProduct: React.FC<Props> = (props: Props) => {
               src={
                 props.dataProduct.thumbnails[0]
                   ? props.dataProduct.thumbnails[0].url
-                  : "/image/ProductImageComingSoon.png"
+                  : "https://via.placeholder.com/160x160?text=vuarausach.com"
               }
               layout="fixed"
               width="160"

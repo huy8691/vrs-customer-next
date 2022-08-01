@@ -3,13 +3,17 @@ import Link from "next/link";
 import { Alert } from 'antd';
 import classes from "../../styles.module.scss";
 import { ItemProduct } from "../../../../src/components";
+import { ProductDataType } from "../../modelHomePage";
 
-const SectionCategoryProduct: React.FC = ({dataNewProduct}) => {
+interface Props {
+  dataNewProduct: any,
+}
+const SectionCategoryProduct: React.FC<Props> = ({dataNewProduct}) => {
   return (
     <div className={classes.sectionProducts}>
       <div className={classes.sectionProductsHead}>
         <div className={classes.sectionProductsTitle}>Flash Sell</div>
-        <Link href="/danhsach">
+        <Link href="/san-pham">
           <a>Xem thêm</a>
         </Link>
       </div>
@@ -17,7 +21,7 @@ const SectionCategoryProduct: React.FC = ({dataNewProduct}) => {
         <Alert message={dataNewProduct.message} type="error" />
       ) : (
         <div className={classes.listProduct}>
-          {dataNewProduct?.map((item, index) => {
+          {dataNewProduct?.map((item:ProductDataType, index: number) => {
             return index < 6 ? (
               <div className={classes.item} key={index + Math.random()}>
                 <ItemProduct dataProduct={item} />

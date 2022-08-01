@@ -16,7 +16,7 @@ const Footer = () => {
                   <Link href="/">
                     <img
                       className={styles.logoFt}
-                      src="/assets/images/logoft.png"
+                      src="/images/logoft.png"
                       alt="Logo"
                     />
                   </Link>
@@ -68,7 +68,7 @@ const Footer = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link className={styles.contextFooter} href="/category">
+                    <Link className={styles.contextFooter} href="/san-pham">
                       Sản phẩm
                     </Link>
                   </li>
