@@ -20,7 +20,7 @@ const Login = () => {
     //   });
   };
 
-  const onFinishFailed = (errorInfo) => {
+  const onFinishFailed = (errorInfo:any) => {
     console.log("Failed:", errorInfo);
   };
 
