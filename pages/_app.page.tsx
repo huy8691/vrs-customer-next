@@ -5,8 +5,8 @@ import { useRouter } from "next/router";
 import { Provider } from "react-redux";
 import { store } from "../src/store/store";
 
-import Footer from "./_layout/footer";
-import Header from "./_layout/header";
+import Footer from "../src/layout/footer";
+import Header from "../src/layout/header";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { asPath } = useRouter();

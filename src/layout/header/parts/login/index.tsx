@@ -1,5 +1,5 @@
 import React from "react";
-import { useAppDispatch, useAppSelector } from "../../../../../src/store/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../store/hooks";
 import { Button, Checkbox, Form, Input } from "antd";
 import { login } from "./loginAPI";
 import { LoginType } from "./loginModels";

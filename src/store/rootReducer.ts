@@ -3,7 +3,7 @@
  * @date 2022/02/08 21:48
  */
 
-import loginReducer from "../../pages/_layout/header/parts/login/loginSlice";
+import loginReducer from "../layout/header/parts/login/loginSlice";
 
 export const rootReducer = {
   login: loginReducer,
