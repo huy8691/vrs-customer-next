@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
-import { NextPage } from 'next';
+import React, { useState } from "react";
+import { NextPage } from "next";
 import Image from "next/image";
 import Head from "next/head";
 import { Alert, Col, Row, Breadcrumb } from "antd";
 import Slider from "react-slick";
 import { getProductDetail } from "./apiProductDetail";
 import { ProductDetailType } from "./modelProductDetail";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
 import classes from "./styles.module.scss";
 
 const ProductDetail: NextPage<ProductDetailType> = (data) => {
@@ -51,7 +49,7 @@ const ProductDetail: NextPage<ProductDetailType> = (data) => {
                 <Slider
                   {...detailSlide1}
                   asNavFor={nav2}
-                  ref={(c:any) => setNav1(c)}
+                  ref={(c: any) => setNav1(c)}
                 >
                   {data.images?.map((item, idx) => {
                     return (
@@ -68,12 +66,11 @@ const ProductDetail: NextPage<ProductDetailType> = (data) => {
                   })}
                 </Slider>
               </div>
-
               <div className={classes.slideShowBig}>
                 <Slider
                   {...detailSlide2}
                   asNavFor={nav1}
-                  ref={(c:any) => setNav2(c)}
+                  ref={(c: any) => setNav2(c)}
                 >
                   {data.images?.map((item, idx) => {
                     return (
@@ -103,13 +100,13 @@ const ProductDetail: NextPage<ProductDetailType> = (data) => {
         </Row>
         <div>
           <h2>Mô tả sản phẩm</h2>
-          <div dangerouslySetInnerHTML={{__html: data.description}}/>
+          <div dangerouslySetInnerHTML={{ __html: data.description }} />
         </div>
       </div>
     </>
   );
 };
-ProductDetail.getInitialProps = async ({ query }:any) => {
+ProductDetail.getInitialProps = async ({ query }: any) => {
   const productId = query.id;
   const dataProductDetail = await getProductDetail(productId)
     .then((res) => {

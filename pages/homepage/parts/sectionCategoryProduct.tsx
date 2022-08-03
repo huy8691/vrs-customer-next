@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Col, Row, Alert } from "antd";
-import classes from "../../styles.module.scss";
-import { CategoryProductDataType } from "../../modelHomePage";
+import classes from "../styles.module.scss";
+import { CategoryProductDataType } from "../modelHomePage";
 interface Props {
   dataCategoryProduct: any;
 }
 const SectionSellingProducts: React.FC<Props> = ({ dataCategoryProduct }) => {
   return (
-    <div className={classes.sectionCategory}>
+    <section>
       <div className="container">
         <h2>Danh mục sản phẩm</h2>
         <div>
@@ -47,7 +47,7 @@ const SectionSellingProducts: React.FC<Props> = ({ dataCategoryProduct }) => {
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,15 +1,17 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import Link from "next/link";
 import { Input, Badge, Button } from "antd";
+import Cookies from "js-cookie";
 import PopupAccount from "./parts/popupAccount";
-import { useAppDispatch, useAppSelector } from "../../../src/store/hooks";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
+
 import {
   SearchOutlined,
   BellOutlined,
   ShoppingCartOutlined,
   AuditOutlined,
 } from "@ant-design/icons";
-import { loginActions } from "../header/parts/login/loginSlice";
+import { loginActions } from "./parts/login/loginSlice";
 import classes from "./styles.module.scss";
 
 const { Search } = Input;
@@ -22,12 +24,16 @@ const suffix = (
   />
 );
 const Header = ({}) => {
+  const token = Boolean(Cookies.get("token"));
   const dispatch = useAppDispatch();
   const onSearch = (value: string) => console.log(value);
-  const login = useAppSelector((state) => state.login);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
   const handleLogout = () => {
     dispatch(loginActions.doLogout());
   };
+  useEffect(()=>{
+    setIsLoggedIn(token)
+  },[token])
   return (
     <header className={classes.header}>
       <div className="container">
@@ -53,13 +59,7 @@ const Header = ({}) => {
             </Link>
           </div>
           <div className={classes.headerMenuRight}>
-            {login.data?.accessToken ? (
-              <div className={classes.item}>
-                <Button type="primary" htmlType="submit" onClick={handleLogout}>
-                  Logout
-                </Button>
-              </div>
-            ) : (
+            {isLoggedIn ? (
               <div className={classes.listItem}>
                 <div className={classes.item}>
                   <AuditOutlined />
@@ -77,8 +77,18 @@ const Header = ({}) => {
                   <Badge count={0} showZero></Badge>
                 </div>
                 <div className={classes.item}>
-                  <PopupAccount />
+                  <Button
+                    type="primary"
+                    htmlType="submit"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </Button>
                 </div>
+              </div>
+            ) : (
+              <div className={classes.listItem}>
+                <PopupAccount />
               </div>
             )}
           </div>

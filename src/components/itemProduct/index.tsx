@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { formatMoney } from "../../utils/money.utils";
+import { formatMoney } from "src/utils/money.utils";
 // import defaultImage from "/image/ProductImageComingSoon.png";
 import classes from "./styles.module.scss";
 interface ImgProductType {

@@ -19,3 +19,16 @@ export interface CategoryProductDataType {
 export interface CategoryProductListDataResponseType {
   data: CategoryProductDataType[];
 }
+
+// promotion
+
+export interface PromotionDataType {
+  name: string;
+  featureImage: {url:string};
+  errors: string;
+  message: string;
+}
+
+export interface PromotionListDataResponseType {
+  data: PromotionDataType[];
+}

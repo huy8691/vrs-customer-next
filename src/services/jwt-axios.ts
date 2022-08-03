@@ -47,7 +47,7 @@ axios.interceptors.response.use(
   (err) => {
     if (err.response && err.response.status === 401) {
       Cookies.remove("token");
-      window.location.href = "/login";
+      window.location.href = "/";
     }
 
     if (err.response && err.response.status === 403) {

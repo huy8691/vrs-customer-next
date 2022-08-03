@@ -1,26 +1,18 @@
-import "antd/dist/antd.css";
+
+import "../styles/globals.less"
 import "../styles/globals.scss";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import type { AppProps } from "next/app";
-import { useRouter } from "next/router";
 import { Provider } from "react-redux";
 import { store } from "../src/store/store";
-
-import Footer from "../src/layout/footer";
-import Header from "../src/layout/header";
+import Layout from "../src/layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  const { asPath } = useRouter();
   return (
     <>
       <Provider store={store}>
-        <Header />
-        {asPath !== "/" && (
-          <div className="section-banner">
-            <img src="/images/bannerpage.png" />
-          </div>
-        )}
-        <Component {...pageProps} />
-        <Footer />
+        <Layout><Component {...pageProps} /></Layout>
       </Provider>
     </>
   );

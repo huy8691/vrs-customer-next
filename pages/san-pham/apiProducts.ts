@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import {jwtAxios} from "../../src/services/jwt-axios";
+import {jwtAxios} from "src/services/jwt-axios";
 import { ProductListDataResponseType } from "./modelProducts";
 
 const getProducts = (

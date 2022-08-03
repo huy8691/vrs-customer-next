@@ -1,3 +1,23 @@
+// rowSlideShow
+.rowSlideShow{
+  position: relative;
+  margin-bottom: 40px;
+  .slideShowSmall{
+    width: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    .item{
+      padding: 15px;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+  .slideShowBig{
+    width: 100%;
+  }
+}
+
 
 .sectionProducts{
   margin-bottom: 30px;

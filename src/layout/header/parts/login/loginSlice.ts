@@ -3,13 +3,13 @@
  * @date 2022/02/08 21:48
  */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { setAuthToken } from "../../../../../src/services/jwt-axios";
+import { setAuthToken } from "src/services/jwt-axios";
 import { LoginResponseType, LoginType, UserInfoType } from "./loginModels";
 
 interface initialLoginStateType {
   isLoading: boolean;
   data?: {
-    accessToken: string;
+    access_token: string;
     info: UserInfoType;
   };
 }
@@ -17,7 +17,7 @@ interface initialLoginStateType {
 const initialState: initialLoginStateType = {
   isLoading: false,
   data: {
-    accessToken: "",
+    access_token: "",
     info: {
       firstName: "",
       lastName: "",
@@ -45,7 +45,7 @@ const loginSlice = createSlice({
       const { data }: LoginResponseType = action.payload;
       state.isLoading = false;
       if (state.data) {
-        state.data.accessToken = data.access_token;
+        state.data.access_token = data.access_token;
         state.data.info = data.userInfo;
       }
       setAuthToken(data.access_token);

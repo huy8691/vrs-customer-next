@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Alert } from "antd";
 import classes from "./styles.module.scss";
-import { ItemProduct } from "../../src/components";
+import { ItemProduct } from "src/components";
 import { getProducts } from "./apiProducts";
 import { ProductDataType } from "./modelProducts";
 

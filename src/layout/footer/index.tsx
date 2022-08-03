@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Col, Row } from 'antd';
 import styles from "./styles.module.scss";
 
-
 const Footer = () => {
   return (
     <footer className={styles.styleFooter}>

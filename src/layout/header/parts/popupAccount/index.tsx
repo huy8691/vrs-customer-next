@@ -1,8 +1,7 @@
 import { Button, Modal, Col, Row, Tabs } from "antd";
 import React, { useState, useEffect } from "react";
-import Login from "../login"
-import { useAppSelector } from "../../../../../src/store/hooks";
-
+import Login from "../login";
+import { useAppSelector } from "src/store/hooks";
 
 const { TabPane } = Tabs;
 
@@ -15,33 +14,42 @@ const PopupAccount = () => {
   };
   const handleCancel = () => {
     setVisible(false);
-    setTabActive("1")
+    setTabActive("1");
   };
 
   const onChange = (key: string) => {
     console.log(key);
-    setTabActive(key)
+    setTabActive(key);
   };
 
-  console.log("login", login)
-  useEffect(()=>{
-    if(login.data?.accessToken){
+  console.log("login", login);
+  useEffect(() => {
+    if (login.data?.access_token) {
       setVisible(false);
-    setTabActive("1")
+      setTabActive("1");
     }
-
-  },[login])
+  }, [login]);
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Đăng nhập
-      </Button>
-      <Button type="primary" onClick={()=>{
-        setTabActive("2")
-        showModal()
-      }}>
-        Đăng ký
-      </Button>
+      <Row gutter={16}>
+        <Col >
+          <Button type="primary" onClick={showModal}>
+            Đăng nhập
+          </Button>
+        </Col>
+        <Col>
+          <Button
+            type="primary"
+            onClick={() => {
+              setTabActive("2");
+              showModal();
+            }}
+          >
+            Đăng ký
+          </Button>
+        </Col>
+      </Row>
+
       <Modal
         visible={visible}
         title=""
@@ -62,9 +70,9 @@ const PopupAccount = () => {
             </div>
           </Col>
           <Col span={16}>
-            <Tabs  activeKey={tabActive} onChange={onChange}>
+            <Tabs activeKey={tabActive} onChange={onChange}>
               <TabPane tab="Đăng nhập" key="1">
-                <Login/>
+                <Login />
               </TabPane>
               <TabPane tab="Đăng ký" key="2">
                 Content of Tab Pane 2
