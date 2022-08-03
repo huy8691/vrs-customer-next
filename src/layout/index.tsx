@@ -22,12 +22,10 @@ const Layout = ({ children }: Props) => {
   const loading = useAppSelector((state) => state.loading);
   const notification = useAppSelector((state) => state.notification);
 
-  const handleMessage = () => {
-    dispatch(notificationActions.doNotification({ message: "notification" }));
-  };
-  useEffect(() => {
-    message.warning(notification.message);
-  }, [notification.open]);
+  
+  // useEffect(() => {
+  //   message.warning(notification.message);
+  // }, [notification.open]);
   return (
     <>
       <Header />
