@@ -20,23 +20,23 @@ function* handleLogin({ payload }: ReturnType<typeof loginActions.doLogin>) {
     );
     yield put(loginActions.doLoginSuccess(data));
     yield put(loadingActions.doLoadingSuccess());
-    yield put(notificationActions.doNotification({
-      message:"Đăng nhập thành công"
-    }));
+    // yield put(notificationActions.doNotification({
+    //   message:"Đăng nhập thành công"
+    // }));
   } catch (error) {
     yield put(loginActions.doLoginFailure());
     yield put(loadingActions.doLoadingFailure());
-    yield put(notificationActions.doNotification({
-      message:"Đăng nhập không thành công"
-    }));
+    // yield put(notificationActions.doNotification({
+    //   message:"Đăng nhập không thành công"
+    // }));
   }
 }
 
 function* handleLogout() {
   Cookies.remove("token");
-  yield put(notificationActions.doNotification({
-    message:"Đăng xuất thành công"
-  }));
+  // yield put(notificationActions.doNotification({
+  //   message:"Đăng xuất thành công"
+  // }));
   // window.location.href = "/";
 }
 
