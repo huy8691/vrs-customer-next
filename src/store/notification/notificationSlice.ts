@@ -1,13 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+type type = 'success' | 'info' | 'warning' | 'error';
 
-interface initialStateType {
-  open: boolean;
+interface notificationType {
+  open?: boolean;
   message: string;
-  duration: number;
-  type: string;
+  duration?: number;
+  type?: type;
 }
 
-const initialState: initialStateType = {
+const initialState: notificationType = {
   open: true,
   message: "",
   duration: 3,
@@ -19,8 +20,8 @@ const notificationSlice = createSlice({
   initialState,
   reducers: {
     doNotification: (
-      state: initialStateType,
-      action: PayloadAction<initialStateType>
+      state: notificationType,
+      action: PayloadAction<notificationType>
     ) => {
       state.open = !state.open;
       state.message = action.payload.message;

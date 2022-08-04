@@ -11,6 +11,7 @@ import { loginActions } from "./loginSlice";
 import {loadingActions} from 'src/store/loading/loadingSlice';
 import {notificationActions} from 'src/store/notification/notificationSlice';
 
+
 function* handleLogin({ payload }: ReturnType<typeof loginActions.doLogin>) {
   try {
     yield put(loadingActions.doLoading());
@@ -20,23 +21,24 @@ function* handleLogin({ payload }: ReturnType<typeof loginActions.doLogin>) {
     );
     yield put(loginActions.doLoginSuccess(data));
     yield put(loadingActions.doLoadingSuccess());
-    // yield put(notificationActions.doNotification({
-    //   message:"Đăng nhập thành công"
-    // }));
-  } catch (error) {
+    yield put(notificationActions.doNotification({
+      message:"Đăng nhập thành công",
+    }));
+  } catch (error:any) {
     yield put(loginActions.doLoginFailure());
     yield put(loadingActions.doLoadingFailure());
-    // yield put(notificationActions.doNotification({
-    //   message:"Đăng nhập không thành công"
-    // }));
+    yield put(notificationActions.doNotification({
+      message: error.response.data.message,
+      type:"error",
+    }));
   }
 }
 
 function* handleLogout() {
   Cookies.remove("token");
-  // yield put(notificationActions.doNotification({
-  //   message:"Đăng xuất thành công"
-  // }));
+  yield put(notificationActions.doNotification({
+    message:"Đăng xuất thành công"
+  }));
   // window.location.href = "/";
 }
 

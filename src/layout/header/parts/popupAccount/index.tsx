@@ -57,7 +57,7 @@ const PopupAccount = () => {
         footer=""
         width={900}
       >
-        <Row>
+        <Row gutter={16}>
           <Col span={8}>
             <h3>Giới thiệu</h3>
             <div>
