@@ -1,11 +1,11 @@
 import { AxiosResponse } from "axios";
-import { jwtAxios } from "src/services/jwt-axios";
+import { callAPI } from "src/services/jwt-axios";
 import { ProductListDataResponseType, PromotionListDataResponseType } from "./modelHomePage";
 
 const getNewProductList = (): Promise<
   AxiosResponse<ProductListDataResponseType>
 > => {
-  return jwtAxios({
+  return callAPI({
     url: `/products/customer?sort=approved_at&order=DESC`,
     method: "get",
     params: {},
@@ -15,7 +15,7 @@ const getNewProductList = (): Promise<
 const getSellingProductList = (): Promise<
   AxiosResponse<ProductListDataResponseType>
 > => {
-  return jwtAxios({
+  return callAPI({
     url: `/products/customer/top/products`,
     method: "get",
     params: {},
@@ -25,7 +25,7 @@ const getSellingProductList = (): Promise<
 const getCategoryProduct = (): Promise<
   AxiosResponse<ProductListDataResponseType>
 > => {
-  return jwtAxios({
+  return callAPI({
     url: `/categories?format=TREE`,
     method: "get",
     params: {},
@@ -35,7 +35,7 @@ const getCategoryProduct = (): Promise<
 const getPromotion = (): Promise<
   AxiosResponse<PromotionListDataResponseType>
 > => {
-  return jwtAxios({
+  return callAPI({
     url: `/promotions`,
     method: "get",
     params: {},

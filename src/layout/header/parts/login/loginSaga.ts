@@ -21,9 +21,10 @@ function* handleLogin({ payload }: ReturnType<typeof loginActions.doLogin>) {
     );
     yield put(loginActions.doLoginSuccess(data));
     yield put(loadingActions.doLoadingSuccess());
-    yield put(notificationActions.doNotification({
-      message:"Đăng nhập thành công",
-    }));
+    window.location.reload()
+    // yield put(notificationActions.doNotification({
+    //   message:"Đăng nhập thành công",
+    // }));
   } catch (error:any) {
     yield put(loginActions.doLoginFailure());
     yield put(loadingActions.doLoadingFailure());
@@ -36,10 +37,10 @@ function* handleLogin({ payload }: ReturnType<typeof loginActions.doLogin>) {
 
 function* handleLogout() {
   Cookies.remove("token");
-  yield put(notificationActions.doNotification({
-    message:"Đăng xuất thành công"
-  }));
-  // window.location.href = "/";
+  window.location.href = "/";
+  // yield put(notificationActions.doNotification({
+  //   message:"Đăng xuất thành công"
+  // }));
 }
 
 function* loginSaga() {

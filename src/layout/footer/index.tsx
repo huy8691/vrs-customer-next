@@ -1,181 +1,150 @@
 import React from "react";
 import Link from "next/link";
-import { Col, Row } from 'antd';
-import styles from "./styles.module.scss";
+import { Col, Row } from "antd";
+import { PhoneFilled,MailFilled } from '@ant-design/icons';
+import classes from "./styles.module.scss";
 
 const Footer = () => {
   return (
-    <footer className={styles.styleFooter}>
-      <div className="container">
-        <div className={styles.itemFooter}>
-          <Row>
+    <footer className={classes.footer}>
+      <div className={classes.footerTop}>
+        <div className="container">
+          <Row gutter={16}>
             <Col sm={12} md={6}>
-              <div className={styles.contentFooter}>
-                <div className={styles.titleFooter}>
-                  <Link href="/">
-                    <img
-                      className={styles.logoFt}
-                      src="/images/logoft.png"
-                      alt="Logo"
-                    />
-                  </Link>
-                  <div className={styles.titleText}>VUA RAU SẠCH</div>
+              <>
+                <div className={classes.footerLogo}>
+                  <div className={classes.footerLogoImage}>
+                    <Link href="/">
+                      <a>
+                        <img src="/images/logoft.png" alt="Logo" />
+                      </a>
+                    </Link>
+                  </div>
+                  <div>VUA RAU SẠCH</div>
                 </div>
-
-                <ul className={styles.bodyFooter}>
+                <ul className={classes.footerMenuType2}>
                   <li>CÔNG TY CỔ PHẦN VUA RAU SẠCH</li>
-                  <ul >
+                  <ul>
                     <li>
-                      {" "}
-                      Giấy chứng nhận Đăng ký Kinh doanh số{" "}
-                      <span style={{ textDecoration: "underline" }}>
-                        0316832935
-                      </span>{" "}
-                      do Sở Kế hoạch và Đầu tư Thành phố Hồ Chí Minh cấp ngày
-                      28/04/2021{" "}
+                      Giấy chứng nhận Đăng ký Kinh doanh số 0316832935 do Sở Kế
+                      hoạch và Đầu tư Thành phố Hồ Chí Minh cấp ngày 28/04/2021
                     </li>
                   </ul>
+                </ul>
+                <ul className={classes.footerMenuType2}>
                   <li>Người đại diện:</li>
                   <ul>
-                    <li> Giám đốc Huỳnh Long Điền</li>
+                    <li>Giám đốc Huỳnh Long Điền</li>
                   </ul>
+                </ul>
+                <ul className={classes.footerMenuType2}>
                   <li>Địa chỉ:</li>
-                  <ul >
+                  <ul>
                     <li>
                       371 Tân Sơn Nhì, phường Tân Thành, quận Tân Phú, TP.HCM
                     </li>
                   </ul>
                 </ul>
-                <p>
-                  
-                  0767 444 411
-                </p>
-                <p>
-                  
-                  hotro@vuarausach.vn
-                </p>
-              </div>
+                <div className={classes.contact}><PhoneFilled /><a href="tel:0767444411">0767 444 411</a></div>
+                <div className={classes.contact}><MailFilled /><a href="mailto:hotro@vuarausach.vn">hotro@vuarausach.vn</a></div>
+              </>
             </Col>
-
             <Col sm={12} md={6}>
-              <div className={styles.contentCategory}>
-                <div className={styles.titleText}>Về Chúng Tôi</div>
-                <ul>
+              <>
+                <h3 className={classes.titleMenu}>Về Chúng Tôi</h3>
+                <ul className={classes.footerMenu}>
                   <li>
-                    <Link className={styles.contextFooter} href="/">
-                      Giới thiệu
+                    <Link href="/">
+                      <a>Giới thiệu</a>
                     </Link>
                   </li>
                   <li>
-                    <Link className={styles.contextFooter} href="/san-pham">
-                      Sản phẩm
+                    <Link href="/san-pham">
+                      <a>Sản phẩm</a>
                     </Link>
                   </li>
                   <li>
-                    <Link className={styles.contextFooter} href="/list-farms">
-                      Cửa hàng
+                    <Link href="/list-farms">
+                      <a>Cửa hàng</a>
                     </Link>
                   </li>
                   <li>
-                    <Link className={styles.contextFooter} href="/category">
-                      Danh sách sản phẩm
+                    <Link href="/category">
+                      <a>Danh sách sản phẩm</a>
                     </Link>
                   </li>
                 </ul>
-              </div>
+              </>
             </Col>
-
             <Col sm={12} md={6}>
-              <div className={styles.contentCategory}>
-                <div className={styles.titleText}>Chính sách</div>
-                <ul>
+              <>
+                <h3 className={classes.titleMenu}>Chính sách</h3>
+                <ul className={classes.footerMenu}>
                   <li>
-                    <Link
-                      className={styles.contextFooter}
-                      href="/terms-and-policy/policy"
-                    >
-                      Điều kiện giao dịch chung
+                    <Link href="/terms-and-policy/policy">
+                      <a>Điều kiện giao dịch chung</a>
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      className={styles.contextFooter}
-                      href="/terms-and-policy/payment"
-                    >
-                      Chính sách thanh toán
+                    <Link href="/terms-and-policy/payment">
+                      <a>Chính sách thanh toán</a>
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      className={styles.contextFooter}
-                      href="/terms-and-policy/delivery"
-                    >
-                      Chính sách giao nhận vận chuyển
+                    <Link href="/terms-and-policy/delivery">
+                      <a>Chính sách giao nhận vận chuyển</a>
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      className={styles.contextFooter}
-                      href="/terms-and-policy/return"
-                    >
-                      Chính sách đổi trả hàng và hoàn tiền
+                    <Link href="/terms-and-policy/return">
+                      <a>Chính sách đổi trả hàng và hoàn tiền</a>
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      className={styles.contextFooter}
-                      href="/terms-and-policy/protection"
-                    >
-                      Chính sách bảo vệ thông tin cá nhân khách hàng
+                    <Link href="/terms-and-policy/protection">
+                      <a>Chính sách bảo vệ thông tin cá nhân khách hàng</a>
                     </Link>
                   </li>
                 </ul>
-              </div>
+              </>
             </Col>
             <Col sm={12} md={6}>
-              <div className={styles.contentCategory}>
-                <div className={styles.titleText}>Quy chế</div>
-                <ul>
+              <>
+                <h3 className={classes.titleMenu}>Quy chế</h3>
+                <ul className={classes.footerMenu}>
                   <li>
-                    <Link
-                      className={styles.contextFooter}
-                      href="/terms-and-policy/dispute"
-                    >
-                      Cơ chế quản lý tranh chấp
+                    <Link href="/terms-and-policy/dispute">
+                      <a>Cơ chế quản lý tranh chấp</a>
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      className={styles.contextFooter}
-                      href="/terms-and-policy/operations"
-                    >
-                      Quy chế quản lý hoạt động
+                    <Link href="/terms-and-policy/operations">
+                      <a>Quy chế quản lý hoạt động</a>
                     </Link>
                   </li>
                 </ul>
-              </div>
+              </>
             </Col>
           </Row>
         </div>
       </div>
-      <div className={styles.confirmRegister}>
+
+      <div className={classes.footerMiddle}>
         <div className="container">
-          Giấy chứng nhận Đăng ký Kinh doanh số <span>0316832935</span> do Sở Kế
+          Giấy chứng nhận Đăng ký Kinh doanh số <span style={{textDecoration: 'underline'}}>0316832935</span> do Sở Kế
           hoạch và Đầu tư Thành phố Hồ Chí Minh cấp ngày 28/04/2021
         </div>
       </div>
-
-      <div className={styles.coppyrightFooter}>
+      <div className={classes.footerBottom}>
         <div className="container">
           <div
             className={
-              styles.groupIcon +
+              classes.groupIcon +
               " " +
               "row d-flex text-center align-items-center"
             }
           >
-            <div className="col-sm-4 col-lg-4 d-flex justify-content-center">
-            </div>
+            <div className="col-sm-4 col-lg-4 d-flex justify-content-center"></div>
             <div className="col-sm-4 col-lg-4">
               <span>Copyright © 2003 - 2020 All rights reserved.</span>
             </div>

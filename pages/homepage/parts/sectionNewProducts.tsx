@@ -1,11 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import { Alert,Button } from "antd";
+import { Alert, Button, Row, Col } from "antd";
+import { RightOutlined } from "@ant-design/icons";
 import classes from "../styles.module.scss";
 import { ItemProduct } from "src/components";
-import { ProductDataType } from "../modelHomePage";
+import { ProductDataType, ProductListDataResponseType } from "../modelHomePage";
 interface Props {
-  dataNewProduct: any;
+  dataNewProduct: ProductListDataResponseType["data"] | any;
 }
 const SectionNewProducts: React.FC<Props> = ({ dataNewProduct }) => {
   return (
@@ -15,22 +16,24 @@ const SectionNewProducts: React.FC<Props> = ({ dataNewProduct }) => {
           <div className={classes.sectionProductsTitle}>Sản phẩm mới</div>
           <Link href="/san-pham">
             <a>
-              <Button type="primary">Xem thêm</Button>
+              <Button type="primary">
+                Xem thêm <RightOutlined style={{ fontSize: "9px" }} />
+              </Button>
             </a>
           </Link>
         </div>
         {dataNewProduct.errors ? (
           <Alert message={dataNewProduct.message} type="error" />
         ) : (
-          <div className={classes.listProduct}>
+          <Row gutter={20}>
             {dataNewProduct?.map((item: ProductDataType, index: number) => {
               return index < 6 ? (
-                <div className={classes.item} key={index + Math.random()}>
+                <Col key={index + Math.random()} span={4}>
                   <ItemProduct dataProduct={item} />
-                </div>
+                </Col>
               ) : null;
             })}
-          </div>
+          </Row>
         )}
       </div>
     </section>

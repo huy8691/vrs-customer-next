@@ -1,3 +1,4 @@
+import type { ReactElement } from "react";
 import Head from "next/head";
 import {
   getNewProductList,
@@ -5,6 +6,8 @@ import {
   getCategoryProduct,
   getPromotion,
 } from "./homepage/apiHomePage";
+import Layout from "src/layout";
+import type { NextPageWithLayout } from "pages/_app.page";
 import SectionPromotion from "./homepage/parts/sectionPromotion";
 import SectionNewProducts from "./homepage/parts/sectionNewProducts";
 import SectionSellingProducts from "./homepage/parts/sectionSellingProducts";
@@ -12,7 +15,7 @@ import SectionPreOrderProducts from "./homepage/parts/sectionPreOrderProducts";
 import SectionFlashSellProducts from "./homepage/parts/sectionFlashSellProducts";
 import SectionCategoryProduct from "./homepage/parts/sectionCategoryProduct";
 
-const Home: React.FC = ({
+const Home: NextPageWithLayout = ({
   dataPromotion,
   dataNewProduct,
   dataSellingProduct,
@@ -42,7 +45,7 @@ export async function getStaticProps() {
       return data;
     })
     .catch((error) => {
-      return error.response.data;
+      return error && error.response && error.response.data;
     });
   const dataSellingProduct = await getSellingProductList()
     .then((res) => {
@@ -50,7 +53,7 @@ export async function getStaticProps() {
       return data;
     })
     .catch((error) => {
-      return error.response.data;
+      return error && error.response && error.response.data;
     });
   const dataCategoryProduct = await getCategoryProduct()
     .then((res) => {
@@ -58,7 +61,7 @@ export async function getStaticProps() {
       return data;
     })
     .catch((error) => {
-      return error.response.data;
+      return error && error.response && error.response.data;
     });
 
   // getPromotion
@@ -68,9 +71,10 @@ export async function getStaticProps() {
       return data;
     })
     .catch((error) => {
-      return error.response.data;
+      return error && error.response && error.response.data;
     });
   return {
+    
     props: {
       dataNewProduct: dataNewProduct,
       dataSellingProduct: dataSellingProduct,
@@ -79,5 +83,9 @@ export async function getStaticProps() {
     },
   };
 }
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
+};
 
 export default Home;

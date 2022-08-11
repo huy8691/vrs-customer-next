@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { Alert,Button } from "antd";
+import { Alert, Button, Row, Col } from "antd";
+import { RightOutlined } from "@ant-design/icons";
 import classes from "../styles.module.scss";
 import { ItemProduct } from "src/components";
-import { ProductDataType } from "../modelHomePage";
+import { ProductDataType, ProductListDataResponseType } from "../modelHomePage";
 
 interface Props {
-  dataSellingProduct: any;
+  dataSellingProduct: ProductListDataResponseType["data"] | any;
 }
 const SectionSellingProducts: React.FC<Props> = ({ dataSellingProduct }) => {
   return (
@@ -16,22 +17,24 @@ const SectionSellingProducts: React.FC<Props> = ({ dataSellingProduct }) => {
           <div className={classes.sectionProductsTitle}>Sản phẩm bán chạy</div>
           <Link href="/san-pham">
             <a>
-              <Button type="primary">Xem thêm</Button>
+              <Button type="primary">
+                Xem thêm <RightOutlined style={{ fontSize: "9px" }} />
+              </Button>
             </a>
           </Link>
         </div>
         {dataSellingProduct.errors ? (
           <Alert message={dataSellingProduct.message} type="error" />
         ) : (
-          <div className={classes.listProduct}>
+          <Row gutter={20}>
             {dataSellingProduct?.map((item: ProductDataType, index: number) => {
               return index < 6 ? (
-                <div className={classes.item} key={index + Math.random()}>
+                <Col key={index + Math.random()} span={4}>
                   <ItemProduct dataProduct={item} />
-                </div>
+                </Col>
               ) : null;
             })}
-          </div>
+          </Row>
         )}
       </div>
     </section>

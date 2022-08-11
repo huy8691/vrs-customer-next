@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Button } from "antd";
 import { formatMoney } from "src/utils/money.utils";
 // import defaultImage from "/image/ProductImageComingSoon.png";
 import classes from "./styles.module.scss";
@@ -9,7 +10,7 @@ interface ImgProductType {
 }
 type Props = {
   dataProduct: {
-    id:number;
+    id: number;
     name: string;
     thumbnails: Array<ImgProductType>;
     prices: Array<{ price: number }>;
@@ -27,22 +28,28 @@ const ItemProduct: React.FC<Props> = (props: Props) => {
               src={
                 props.dataProduct.thumbnails[0]
                   ? props.dataProduct.thumbnails[0].url
-                  : "https://via.placeholder.com/160x160?text=vuarausach.com"
+                  : "https://via.placeholder.com/200x200?text=vuarausach.com"
               }
-              layout="fixed"
-              width="160"
-              height="160"
+              width="200"
+              height="200"
+              objectFit="cover"
             />
           </div>
           <div className={classes.name}>{props.dataProduct.name}</div>
-          <div className={classes.priceUnit}>
-            <span className={classes.price}>
-              {formatMoney(props.dataProduct.prices[0].price)}
-            </span>
-            /{props.dataProduct.unit}
-          </div>
         </a>
       </Link>
+      <div className={classes.priceUnit}>
+        <span className={classes.price}>
+          {formatMoney(props.dataProduct.prices[0].price)}
+        </span>
+        /{props.dataProduct.unit}
+      </div>
+      <div className={classes.addToCart}>
+        <Button type="primary" className={classes.addToCartButton}>
+          Thêm Giỏ Hàng{" "}
+          <span className={`${classes.iconCart} icon-cart`}></span>
+        </Button>
+      </div>
     </div>
   );
 };

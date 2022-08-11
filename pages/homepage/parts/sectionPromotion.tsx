@@ -5,11 +5,12 @@ import { Alert } from "antd";
 import Slider from "react-slick";
 import {
   PromotionDataType,
+  PromotionListDataResponseType,
 } from "../modelHomePage";
 import classes from "../styles.module.scss";
 
 interface Props {
-  dataPromotion: any;
+  dataPromotion: PromotionListDataResponseType["data"] | any;
 }
 const SectionPromotion: React.FC<Props> = ({ dataPromotion }) => {
   console.log("dataPromotion", dataPromotion);
@@ -25,16 +26,21 @@ const SectionPromotion: React.FC<Props> = ({ dataPromotion }) => {
     focusOnSelect: true,
     centerMode: true,
     centerPadding: "0px",
+    autoplay: true,
   };
   const detailSlide2 = {
     slidesToShow: 1,
     arrows: false,
     dots: true,
+    autoplay: true,
+    autoplaySpeed: 7000,
   };
   return (
     <div className={classes.rowSlideShow}>
       {dataPromotion.errors ? (
-        <div className="container"><Alert message={dataPromotion.message} type="error" /></div>
+        <div className="container">
+          <Alert message={dataPromotion.message} type="error" />
+        </div>
       ) : (
         <>
           <div className={classes.slideShowSmall}>
@@ -43,8 +49,12 @@ const SectionPromotion: React.FC<Props> = ({ dataPromotion }) => {
               asNavFor={nav2}
               ref={(c: any) => setNav1(c)}
             >
-              {dataPromotion?.map((item:PromotionDataType, idx:number) => {
-                return <div className={classes.item} key={idx}><h3>{item?.name}</h3></div>;
+              {dataPromotion?.map((item: PromotionDataType, idx: number) => {
+                return (
+                  <div className={classes.item} key={idx}>
+                    <h3>{item?.name}</h3>
+                  </div>
+                );
               })}
             </Slider>
           </div>
@@ -54,7 +64,7 @@ const SectionPromotion: React.FC<Props> = ({ dataPromotion }) => {
               asNavFor={nav1}
               ref={(c: any) => setNav2(c)}
             >
-              {dataPromotion?.map((item:PromotionDataType, idx:number) => {
+              {dataPromotion?.map((item: PromotionDataType, idx: number) => {
                 return (
                   <div key={idx}>
                     <Image
@@ -63,6 +73,7 @@ const SectionPromotion: React.FC<Props> = ({ dataPromotion }) => {
                       layout="fixed"
                       width="1920"
                       height="400"
+                      objectFit="cover"
                     />
                   </div>
                 );

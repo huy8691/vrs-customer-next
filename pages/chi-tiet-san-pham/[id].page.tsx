@@ -8,7 +8,12 @@ import { getProductDetail } from "./apiProductDetail";
 import { ProductDetailType } from "./modelProductDetail";
 import classes from "./styles.module.scss";
 
-const ProductDetail: NextPage<ProductDetailType> = (data) => {
+// layout
+import type { ReactElement } from "react";
+import Layout from "src/layout";
+import type { NextPageWithLayout } from "pages/_app.page";
+
+const ProductDetail: NextPageWithLayout = (data:any) => {
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
   if (data.errors) {
@@ -117,5 +122,9 @@ ProductDetail.getInitialProps = async ({ query }: any) => {
       return error.response.data;
     });
   return dataProductDetail;
+};
+
+ProductDetail.getLayout = function getLayout(page: ReactElement) {
+  return <Layout>{page}</Layout>;
 };
 export default ProductDetail;

@@ -1,14 +1,17 @@
 import { AxiosResponse } from "axios";
-import {jwtAxios} from "src/services/jwt-axios";
+import {callAPI} from "src/services/jwt-axios";
 import { ProductListDataResponseType } from "./modelProducts";
 
 const getProducts = (
-  productId?: string
+  params: object
 ): Promise<AxiosResponse<ProductListDataResponseType>> => {
-  return jwtAxios({
+  console.log("parm", params);
+  return callAPI({
     url: `/products/customer`,
     method: 'get',
     params: {
+      ...params,
+      pageSize: 20,
     },
   })
 }

@@ -1,14 +1,16 @@
 import React from "react";
 import Link from "next/link";
-import { Alert, Button } from "antd";
+import { Alert, Button, Row, Col } from "antd";
+import { RightOutlined } from "@ant-design/icons";
 import classes from "../styles.module.scss";
 import { ItemProduct } from "src/components";
-import { ProductDataType } from "../modelHomePage";
+import { ProductListDataResponseType, ProductDataType } from "../modelHomePage";
 
 interface Props {
-  dataNewProduct: any;
+  dataNewProduct: ProductListDataResponseType["data"] | any;
 }
-const SectionCategoryProduct: React.FC<Props> = ({ dataNewProduct }) => {
+const SectionFlashSellProducts: React.FC<Props> = ({ dataNewProduct }) => {
+  console.log("SectionSellingProducts", dataNewProduct);
   return (
     <section className={classes.sectionProducts}>
       <div className="container">
@@ -16,26 +18,32 @@ const SectionCategoryProduct: React.FC<Props> = ({ dataNewProduct }) => {
           <div className={classes.sectionProductsTitle}>Flash Sell</div>
           <Link href="/san-pham">
             <a>
-              <Button type="primary">Xem thêm</Button>
+              <Button type="primary">
+                Xem thêm <RightOutlined style={{ fontSize: "9px" }} />
+              </Button>
             </a>
           </Link>
         </div>
         {dataNewProduct.errors ? (
           <Alert message={dataNewProduct.message} type="error" />
         ) : (
-          <div className={classes.listProduct}>
+          <Row gutter={20}>
             {dataNewProduct?.map((item: ProductDataType, index: number) => {
               return index < 6 ? (
-                <div className={classes.item} key={index + Math.random()}>
+                <Col
+                  className={classes.item}
+                  key={index + Math.random()}
+                  span={4}
+                >
                   <ItemProduct dataProduct={item} />
-                </div>
+                </Col>
               ) : null;
             })}
-          </div>
+          </Row>
         )}
       </div>
     </section>
   );
 };
 
-export default SectionCategoryProduct;
+export default SectionFlashSellProducts;

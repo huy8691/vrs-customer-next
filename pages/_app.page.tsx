@@ -1,21 +1,24 @@
-
-import "../styles/globals.less"
+import "../styles/globals.less";
 import "../styles/globals.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import type { AppProps } from "next/app";
-import { Provider } from "react-redux";
-import { store } from "../src/store/store";
-import Layout from "../src/layout";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <>
-      <Provider store={store}>
-        <Layout><Component {...pageProps} /></Layout>
-      </Provider>
-    </>
+import type { ReactElement, ReactNode } from "react";
+import type { NextPage } from "next";
+// import type { AppProps } from 'next/app'
+
+export type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  const getLayout = Component.getLayout ?? ((page) => page);
+  return getLayout(
+    <Component {...pageProps} />
   );
 }
-
-export default MyApp;

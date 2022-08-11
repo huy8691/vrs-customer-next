@@ -1,6 +1,8 @@
+@import "styles/colors.scss";
 .header {
-  padding: 10px 0px;
-  .headerContent{
+  padding: 5px 0px;
+  position: relative;
+  .headerContent {
     display: flex;
     align-items: center;
   }
@@ -11,28 +13,132 @@
       max-width: 70px;
       margin-right: 10px;
       padding-right: 10px;
+      position: relative;
+      &:after {
+        content: "";
+        display: inline-block;
+        width: 1px;
+        height: 25px;
+        position: absolute;
+        top: 50%;
+        right: 0;
+        background-color: $border;
+        transform: translateY(-50%);
+      }
     }
-  }
-  .headerMenuRight{
-    display: flex;
-    justify-content: flex-end;
-    width: calc(50% - 50px);
-    .listItem{
-      display: flex;
-      justify-content: flex-end;
-    }
-    .item{
-      margin-right: 20px;
-      &:last-child{
-        margin-right:0;
-        display: flex;
+    .customSearch {
+      :global {
+        .ant-input-search-button {
+          box-shadow: none;
+          padding-left: 5px;
+          padding-right: 5px;
+          background: #F0F0F0;
+          color: rgba(0, 0, 0, 0.45);
+          text-shadow: none;
+          border: 1px solid #F0F0F0;
+          border-left: none;
+          font-size: 12px;
+          border-radius: 6px 0 0 6px;
+          &:hover, &:focus{
+            border-color: $primary;
+            background-color: $primary;
+            color: white;
+          }
+        }
+
+        .ant-input-group-addon {
+          left: 0;
+          border-radius: 0 6px 6px 0;
+        }
+        .ant-input-search
+          > .ant-input-group
+          > .ant-input-group-addon:last-child
+          .ant-input-search-button {
+          border-radius: 0 6px 6px 0;
+        }
+        .ant-input-affix-wrapper {
+          border-right: none;
+          padding-right: 5px;
+          border-radius: 6px 0 0 6px;
+          background: #F0F0F0;
+          border-color:  #F0F0F0;
+          .ant-input {
+            font-size: 12px;
+            background: #F0F0F0;
+          }
+        }
+        .ant-input-affix-wrapper:hover ~ .ant-input-group-addon {
+          .ant-input-search-button {
+            border-color: $primary;
+            background-color: $primary;
+            color: white;
+          }
+        }
+        .ant-input-affix-wrapper:focus, .ant-input-affix-wrapper-focused{
+          border-color: $primary;
+          box-shadow:none;
+          ~ .ant-input-group-addon{
+            box-shadow: none;
+            border-color: $primary;
+            background-color: $primary;
+            color: white;
+            .ant-input-search-button{
+              border-color: $primary;
+              background-color: $primary;
+              color: white;
+            }
+          }
+        }
       }
     }
   }
-  .mainLogo{
+  .headerMenuRight {
+    display: flex;
+    justify-content: flex-end;
+    width: calc(50% - 50px);
+    .listItem {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    .item {
+      margin-right: 20px;
+      a{
+        margin-left: 7px;
+        margin-right: 5px;
+      }
+    }
+    .itemUser {
+      cursor: pointer;
+    }
+  }
+  .mainLogo {
     width: 100px;
     padding: 0 15px;
+    position: relative;
+    z-index: 100;
+    text-align: center;
+    top: 30px;
+    a{
+      display: inline-block;
+    }
+    .logo{
+      position: relative;
+      z-index: 1;
+      left: 5%;
+    }
+    .mainLogoBg{
+      position: absolute;
+      top:55%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 0;
+    }
   }
-  
+  .sectionMainMenu{
+    position: absolute;
+    top:100%;
+    z-index: 10;
+    width: 100%;
+  }
 }
-

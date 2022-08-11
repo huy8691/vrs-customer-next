@@ -2,6 +2,7 @@ import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button, Result } from "antd";
+import classes from "./styles.module.scss";
 
 const RequireAuth: React.FC<{
   children: JSX.Element;
@@ -16,7 +17,7 @@ const RequireAuth: React.FC<{
     }
   }, [token]);
   return (
-    <>
+    <div className={classes.requireAuth}>
       {isLoggedIn && children}
       {is403 && (
         <Result
@@ -32,7 +33,7 @@ const RequireAuth: React.FC<{
           }
         />
       )}
-    </>
+    </div>
   );
 };
 export default RequireAuth;

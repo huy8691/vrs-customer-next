@@ -5,3 +5,20 @@
   transform: translate(-50%, -50%);
   z-index: 100000;
 }
+.requireAuth{
+  min-height: 70vh;
+}
+
+.layoutInner{
+  padding-top: 30px;
+  padding-bottom:30px;
+}
+
+.menu{
+  .menuItem{
+    margin-bottom: 10px;
+    .icon{
+      margin-right: 15px;
+    }
+  }
+}

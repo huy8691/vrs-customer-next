@@ -4,50 +4,58 @@ import Footer from "./footer";
 import Header from "./header";
 import { useRouter } from "next/router";
 import { useAppSelector } from "src/store/hooks";
-import notificationType from "src/store/notification/notificationSlice"
+import { Provider } from "react-redux";
+import { store } from "src/store/store";
 import classes from "./styles.module.scss";
 
 type Props = {
   children: JSX.Element;
 };
-const Layout = ({ children }: Props) => {
+const LayoutInner = ({ children }: Props) => {
   const { asPath } = useRouter();
-  const loading = useAppSelector((state) => state.loading);
   const notificationApp = useAppSelector((state) => state.notification);
-  
+  const loading = useAppSelector((state) => state.loading);
   useEffect(() => {
-    if (notificationApp.message ) {
-      const request=()=>{
-        if(notificationApp.type===undefined) {
-          return  "success"
-        } 
-        return notificationApp.type
-      }
+    if (notificationApp.message) {
+      const request = () => {
+        if (notificationApp.type === undefined) {
+          return "success";
+        }
+        return notificationApp.type;
+      };
       notification[request()]({
         message: notificationApp.message,
         placement: "bottomLeft",
         duration: notificationApp.duration,
       });
     }
-    console.log("notificationApp", notificationApp)
-    
-  }, [notificationApp.open]);
+  }, [notificationApp]);
   return (
-    <>
-      <Header />
-      {asPath !== "/" && (
-        <div className="section-banner">
-          <img src="/images/bannerpage.png" />
-        </div>
-      )}
+    <div className={asPath !== "/" ? classes.layoutInner : ""}>
       {children}
-      <Footer />
       {loading.isLoading && (
         <div className={classes.loading}>
-          <Spin size="large"/>
+          <Spin size="large" />
         </div>
       )}
-    </>
+    </div>
+  );
+};
+const Layout = ({ children }: Props) => {
+  const { asPath } = useRouter();
+  return (
+    <Provider store={store}>
+      <>
+        <Header />
+        {asPath !== "/" && (
+          <div className="section-banner">
+            <img src="/images/bannerpage.png" />
+          </div>
+        )}
+        <LayoutInner>{children}</LayoutInner>
+        <Footer />
+      </>
+    </Provider>
   );
 };
 

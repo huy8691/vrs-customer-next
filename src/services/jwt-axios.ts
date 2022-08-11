@@ -7,41 +7,41 @@ if (env === "prod") {
   urlApi = "https://api-dev.vuarausach.vn/";
 }
 
-const jwtAxios = axios.create({
+const token = Cookies.get("token");
+
+const callAPI = axios.create({
   baseURL: urlApi, // YOUR_API_URL HERE
-  timeout: 5000,
+  timeout: 10000,
   timeoutErrorMessage: "Timeout error",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-const callAPIWithToken = axios.create({
-  baseURL: urlApi, //v YOUR_API_URL HERE
-  timeout: 10000,
-  timeoutErrorMessage: "Timeout error",
-});
-callAPIWithToken.interceptors.request.use(
-  (config) => {
-    // Do something before request is sent
-    const token = Cookies.get("token");
-    config.headers = {
-      Authorization: `Bearer ${token}`,
-      Accept: "application/json",
-    };
-    return config;
+callAPI.interceptors.response.use(
+  (res) => {
+    return res;
   },
-  (error) => {
-    // Do something with request error
-    return Promise.reject(error);
+  (err) => {
+    if (err.response && err.response.status === 403) {
+      window.location.href = "/403";
+    }
+    return Promise.reject(err);
   }
 );
 
-axios.interceptors.response.use(
+const callAPIWithToken = axios.create({
+  baseURL: urlApi,
+  timeout: 10000,
+  timeoutErrorMessage: "Timeout error",
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: `Bearer ${token}`,
+  }
+});
+
+callAPIWithToken.interceptors.response.use(
   (res) => {
-    if (res && res.data) {
-      return res;
-    }
     return res;
   },
   (err) => {
@@ -49,11 +49,9 @@ axios.interceptors.response.use(
       Cookies.remove("token");
       window.location.href = "/";
     }
-
     if (err.response && err.response.status === 403) {
       window.location.href = "/403";
     }
-
     return Promise.reject(err);
   }
 );
@@ -66,4 +64,4 @@ export const setAuthToken = (_token: string) => {
   }
 };
 
-export { jwtAxios, callAPIWithToken};
+export { callAPI, callAPIWithToken};
