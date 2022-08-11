@@ -229,14 +229,6 @@ const SideBarProducts: React.FC = () => {
           step={1000}
           defaultValue={[1000, 1000000]}
           marks={marks}
-          // value={[
-          //   queryUrl.minPrice ? queryUrl.minPrice : 1,
-          //   queryUrl.maxPrice ? queryUrl.maxPrice : 500000,
-          // ]}
-          // value={[
-          //   typeof queryUrl.minPrice === "number" ? queryUrl.minPrice : 0,
-          //   typeof queryUrl.maxPrice === "number" ? queryUrl.maxPrice : 0,
-          // ]}
           onChange={() => onChangePrice}
           onAfterChange={onAfterChangePrice}
           max={10000000}

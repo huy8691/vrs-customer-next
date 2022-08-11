@@ -10,6 +10,7 @@ import {
   Pagination,
   Space,
   Button,
+  Alert,
 } from "antd";
 import { FileSyncOutlined, ClearOutlined } from "@ant-design/icons";
 import classes from "./styles.module.scss";
@@ -64,7 +65,7 @@ const { TabPane } = Tabs;
 
 const Products: NextPageWithLayout = () => {
   const [dataProducts, setDataProducts] =
-    useState<ProductListDataResponseType>();
+    useState<ProductListDataResponseType | null>();
   const [defaultActiveTabs, setDefaultActiveTabs] = useState<string>("0");
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -93,7 +94,6 @@ const Products: NextPageWithLayout = () => {
 
   // handleChangePagination
   const handleChangePagination = (page: number, pageSize: number) => {
-    console.log("page", page, pageSize);
     let routerQuery = {
       ...router.query,
       page: page,
@@ -109,16 +109,18 @@ const Products: NextPageWithLayout = () => {
       router.query.sort ? router.query.sort : "",
       router.query.order ? router.query.order : ""
     );
+    setDataProducts(null);
     if (!isEmptyObject(router.query)) {
       dispatch(loadingActions.doLoading());
       getProducts(router.query)
         .then((res) => {
           const data = res.data;
-          console.log("Products", res);
           setDataProducts(data);
           dispatch(loadingActions.doLoadingSuccess());
         })
         .catch((error) => {
+          const errors = error.response.data;
+          setDataProducts(errors);
           dispatch(loadingActions.doLoadingFailure());
         });
     }
@@ -127,28 +129,34 @@ const Products: NextPageWithLayout = () => {
         .then((res) => {
           const data = res.data;
           setDataProducts(data);
-          console.log("Products", res.data);
           dispatch(loadingActions.doLoadingSuccess());
         })
         .catch((error) => {
+          const errors = error.response.data;
+          setDataProducts(errors);
           dispatch(loadingActions.doLoadingFailure());
         });
     }
   }, [router, dispatch]);
 
   const renderResult = () => {
+    if (dataProducts?.errors) {
+      return <Alert message="Đã xảy ra lỗi" type="error" />;
+    }
     if (dataProducts?.data?.length === 0) {
       return (
-        <Result
-          icon={<FileSyncOutlined />}
-          title={<Title level={5}>Không tìm thấy sản phẩm</Title>}
-        />
+        <>
+          <Result
+            icon={<FileSyncOutlined />}
+            title={<Title level={5}>Không tìm thấy sản phẩm</Title>}
+          />
+        </>
       );
     }
     return (
       <Space direction="vertical" size="middle" style={{ width: "100%" }}>
         <Row gutter={20} justify="space-between">
-          <Col>{dataProducts?.total} kết quả</Col>
+          <Col>{dataProducts?.total && `${dataProducts?.total} sản phẩm`}</Col>
           {!isEmptyObject(router.query) && (
             <Col>
               <Button type="primary" size="small">
