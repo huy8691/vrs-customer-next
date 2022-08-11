@@ -8,7 +8,7 @@ export interface ProductDataType {
 }
 
 export interface ProductListDataResponseType {
-  data: ProductDataType[];
+  data?: ProductDataType[];
   total?: number;
   errors?: any;
 }

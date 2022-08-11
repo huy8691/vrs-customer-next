@@ -65,7 +65,7 @@ const { TabPane } = Tabs;
 
 const Products: NextPageWithLayout = () => {
   const [dataProducts, setDataProducts] =
-    useState<ProductListDataResponseType | null>();
+    useState<ProductListDataResponseType>();
   const [defaultActiveTabs, setDefaultActiveTabs] = useState<string>("0");
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -109,7 +109,7 @@ const Products: NextPageWithLayout = () => {
       router.query.sort ? router.query.sort : "",
       router.query.order ? router.query.order : ""
     );
-    setDataProducts(null);
+    setDataProducts({});
     if (!isEmptyObject(router.query)) {
       dispatch(loadingActions.doLoading());
       getProducts(router.query)
@@ -119,8 +119,10 @@ const Products: NextPageWithLayout = () => {
           dispatch(loadingActions.doLoadingSuccess());
         })
         .catch((error) => {
-          const errors = error.response.data;
-          setDataProducts(errors);
+          const errors = error.response ? error.response.data : true;
+          setDataProducts({
+            errors: errors,
+          });
           dispatch(loadingActions.doLoadingFailure());
         });
     }
@@ -132,8 +134,10 @@ const Products: NextPageWithLayout = () => {
           dispatch(loadingActions.doLoadingSuccess());
         })
         .catch((error) => {
-          const errors = error.response.data;
-          setDataProducts(errors);
+          const errors = error.response ? error.response.data : true;
+          setDataProducts({
+            errors: errors,
+          });
           dispatch(loadingActions.doLoadingFailure());
         });
     }
@@ -145,24 +149,38 @@ const Products: NextPageWithLayout = () => {
     }
     if (dataProducts?.data?.length === 0) {
       return (
-        <>
+        <Space direction="vertical" size="middle" style={{ width: "100%" }}>
+          <Row gutter={20} justify="space-between" align="middle">
+            <Col></Col>
+            {!isEmptyObject(router.query) && (
+              <Col>
+                <Button size="small">
+                  <Link href="/san-pham">
+                    <a>
+                      Xoá tất cả <ClearOutlined />
+                    </a>
+                  </Link>
+                </Button>
+              </Col>
+            )}
+          </Row>
           <Result
             icon={<FileSyncOutlined />}
             title={<Title level={5}>Không tìm thấy sản phẩm</Title>}
           />
-        </>
+        </Space>
       );
     }
     return (
       <Space direction="vertical" size="middle" style={{ width: "100%" }}>
-        <Row gutter={20} justify="space-between">
+        <Row gutter={20} justify="space-between" align="middle">
           <Col>{dataProducts?.total && `${dataProducts?.total} sản phẩm`}</Col>
           {!isEmptyObject(router.query) && (
             <Col>
-              <Button type="primary" size="small">
+              <Button size="small">
                 <Link href="/san-pham">
                   <a>
-                    Xoá tìm kiếm <ClearOutlined />
+                    Xoá tất cả <ClearOutlined />
                   </a>
                 </Link>
               </Button>
@@ -173,7 +191,7 @@ const Products: NextPageWithLayout = () => {
           {dataProducts?.data?.map((item: ProductDataType, index: number) => (
             <Col span={6} key={index + Math.random()}>
               <div className={classes.itemProduct}>
-                <ItemProduct dataProduct={item} />
+                <ItemProduct dataProduct={{ ...item, isShowRating: true }} />
               </div>
             </Col>
           ))}
@@ -191,7 +209,7 @@ const Products: NextPageWithLayout = () => {
     );
   };
   return (
-    <div className="container">
+    <div className={`container ${classes.pageProduct}`}>
       <Row gutter={30}>
         <Col span={6}>
           <SideBarProducts />

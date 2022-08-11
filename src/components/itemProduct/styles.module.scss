@@ -15,7 +15,13 @@
       font-weight: normal;
     }
   }
+  .rating{
+    margin-top: -10px;
+    margin-bottom: -5px;
+    transform: scale(0.8) translateX(-12%)
+  }
   .addToCart{
+    margin-top: 10px;
     .addToCartButton{
         padding-left: 10px;
         padding-right: 5px;

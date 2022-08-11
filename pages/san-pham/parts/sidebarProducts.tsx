@@ -59,7 +59,9 @@ const ratePrice = [
 ];
 
 const marks: SliderMarks = {
+  1000: "1000",
   5000000: "5.000.000",
+  10000000: "1tr",
 };
 
 const SideBarProducts: React.FC = () => {
@@ -227,7 +229,7 @@ const SideBarProducts: React.FC = () => {
         <Slider
           range
           step={1000}
-          defaultValue={[1000, 1000000]}
+          defaultValue={[1000000, 2000000]}
           marks={marks}
           onChange={() => onChangePrice}
           onAfterChange={onAfterChangePrice}
@@ -235,14 +237,14 @@ const SideBarProducts: React.FC = () => {
           min={1000}
         />
         <Form form={form} onFinish={handleFinishFormPrice}>
-          <Row gutter={10}>
-            <Col span={11}>
+          <Row gutter={10} wrap={false}>
+            <Col>
               <Form.Item name="minPrice">
                 <InputNumber min={1000} style={{ width: "100%" }} />
               </Form.Item>
             </Col>
-            <Col span={2}>-</Col>
-            <Col span={11}>
+            <Col span={1}>-</Col>
+            <Col>
               <Form.Item name="maxPrice">
                 <InputNumber style={{ width: "100%" }} />
               </Form.Item>
