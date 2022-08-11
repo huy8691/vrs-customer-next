@@ -13,7 +13,7 @@ import type { ReactElement } from "react";
 import Layout from "src/layout";
 import type { NextPageWithLayout } from "pages/_app.page";
 
-const ProductDetail: NextPageWithLayout = (data:any) => {
+const ProductDetail: NextPageWithLayout = (data: any) => {
   const [nav1, setNav1] = useState();
   const [nav2, setNav2] = useState();
   if (data.errors) {
@@ -56,7 +56,7 @@ const ProductDetail: NextPageWithLayout = (data:any) => {
                   asNavFor={nav2}
                   ref={(c: any) => setNav1(c)}
                 >
-                  {data.images?.map((item, idx) => {
+                  {data.images?.map((item: any, idx: number) => {
                     return (
                       <div key={idx}>
                         <Image
@@ -77,7 +77,7 @@ const ProductDetail: NextPageWithLayout = (data:any) => {
                   asNavFor={nav1}
                   ref={(c: any) => setNav2(c)}
                 >
-                  {data.images?.map((item, idx) => {
+                  {data.images?.map((item: any, idx: number) => {
                     return (
                       <div key={idx}>
                         <Image
@@ -96,7 +96,7 @@ const ProductDetail: NextPageWithLayout = (data:any) => {
           </Col>
           <Col span={12}>
             <Breadcrumb>
-              {data.categories?.map((item, idx) => {
+              {data.categories?.map((item: any, idx: number) => {
                 return <Breadcrumb.Item key={idx}>{item.name}</Breadcrumb.Item>;
               })}
             </Breadcrumb>
