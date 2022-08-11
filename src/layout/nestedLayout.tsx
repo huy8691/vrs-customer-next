@@ -1,12 +1,12 @@
 import React from "react";
 import { Row, Col } from "antd";
-import {InfoCircleOutlined, DatabaseOutlined } from "@ant-design/icons";
+import { InfoCircleOutlined, DatabaseOutlined } from "@ant-design/icons";
 import { ActiveLink } from "src/components";
 import classes from "./styles.module.scss";
 type Props = {
   children: JSX.Element;
 };
-const NestedLayout = ({ children }: Props) => {
+const NestedLayout: React.FC<Props> = ({ children }: Props) => {
   const items = [
     {
       label: "Thông tin tài khoản",

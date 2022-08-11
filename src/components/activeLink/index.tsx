@@ -4,7 +4,9 @@ import { useRouter } from "next/router";
 import classes from "./styles.module.scss";
 type Props = {
   children: React.ReactElement;
-  activeClassName: string;
+  activeClassName?: string;
+  href: string;
+  as?: string;
 };
 
 const ActiveLink: React.FC<Props> = ({ children, ...props }: Props) => {
