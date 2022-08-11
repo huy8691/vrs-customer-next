@@ -173,7 +173,7 @@ const Products: NextPageWithLayout = () => {
         {dataProducts?.total && dataProducts?.total > 20 && (
           <Pagination
             defaultCurrent={1}
-            current={router.query.page ? parseInt(router.query.page) : 1}
+            current={router.query.page ? parseInt(router.query.page[0]) : 1}
             total={dataProducts?.total}
             pageSize={20}
             onChange={handleChangePagination}

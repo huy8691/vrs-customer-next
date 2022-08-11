@@ -163,7 +163,9 @@ const SideBarProducts: React.FC = () => {
   useEffect(() => {
     setQueryUrl({
       ...queryUrl,
-      minRating: parseInt(router.query.minRating),
+      minRating: router.query.minRating
+        ? parseInt(router.query.minRating[0])
+        : 0,
     });
     form.setFieldsValue({
       minPrice: router.query.minPrice,
@@ -172,8 +174,8 @@ const SideBarProducts: React.FC = () => {
     // set select radio price
     if (!isEmptyObject(router.query)) {
       handleActivePriceRadio(
-        router.query.minPrice ? router.query.minPrice : "",
-        router.query.maxPrice ? router.query.maxPrice : ""
+        router.query.minPrice ? router.query.minPrice[0] : "",
+        router.query.maxPrice ? router.query.maxPrice[0] : ""
       );
     }
   }, [router]);
