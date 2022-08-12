@@ -5,10 +5,12 @@ import {
   getSellingProductList,
   getCategoryProduct,
   getPromotion,
+  getOutstandingFarm,
 } from "./homepage/apiHomePage";
 import Layout from "src/layout";
 import type { NextPageWithLayout } from "pages/_app.page";
 import SectionPromotion from "./homepage/parts/sectionPromotion";
+import SectionOutstandingFarm from "./homepage/parts/sectionOutstandingFarm";
 import SectionNewProducts from "./homepage/parts/sectionNewProducts";
 import SectionSellingProducts from "./homepage/parts/sectionSellingProducts";
 import SectionPreOrderProducts from "./homepage/parts/sectionPreOrderProducts";
@@ -17,6 +19,7 @@ import SectionCategoryProduct from "./homepage/parts/sectionCategoryProduct";
 
 const Home: NextPageWithLayout = ({
   dataPromotion,
+  dataOutstandingFarm,
   dataNewProduct,
   dataSellingProduct,
   dataCategoryProduct,
@@ -29,6 +32,7 @@ const Home: NextPageWithLayout = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <SectionPromotion dataPromotion={dataPromotion} />
+      <SectionOutstandingFarm dataOutstandingFarm={dataOutstandingFarm} />
       <SectionFlashSellProducts dataNewProduct={dataNewProduct} />
       <SectionNewProducts dataNewProduct={dataNewProduct} />
       <SectionSellingProducts dataSellingProduct={dataSellingProduct} />
@@ -41,45 +45,62 @@ const Home: NextPageWithLayout = ({
 export async function getStaticProps() {
   const dataNewProduct = await getNewProductList()
     .then((res) => {
-      const { data } = res.data;
+      const data = res.data;
       return data;
     })
     .catch((error) => {
-      return error && error.response && error.response.data;
+      const errors = error.response ? error.response.data : true;
+      return errors;
     });
   const dataSellingProduct = await getSellingProductList()
     .then((res) => {
-      const { data } = res.data;
+      const data = res.data;
       return data;
     })
     .catch((error) => {
-      return error && error.response && error.response.data;
-    });
-  const dataCategoryProduct = await getCategoryProduct()
-    .then((res) => {
-      const { data } = res.data;
-      return data;
-    })
-    .catch((error) => {
-      return error && error.response && error.response.data;
+      const errors = error.response ? error.response.data : true;
+      return errors;
     });
 
-  // getPromotion
-  const dataPromotion = await getPromotion()
+  // category
+  const dataCategoryProduct = await getCategoryProduct()
     .then((res) => {
-      const { data } = res.data;
+      const data = res.data;
       return data;
     })
     .catch((error) => {
-      return error && error.response && error.response.data;
+      const errors = error.response ? error.response.data : true;
+      return errors;
+    });
+
+  // Promotion
+  const dataPromotion = await getPromotion()
+    .then((res) => {
+      const data = res.data;
+      return data;
+    })
+    .catch((error) => {
+      const errors = error.response ? error.response.data : true;
+      return errors;
+    });
+
+  // OutstandingFarm
+  const dataOutstandingFarm = await getOutstandingFarm()
+    .then((res) => {
+      const data = res.data;
+      return data;
+    })
+    .catch((error) => {
+      const errors = error.response ? error.response.data : true;
+      return errors;
     });
   return {
-    
     props: {
+      dataPromotion: dataPromotion,
+      dataOutstandingFarm: dataOutstandingFarm,
       dataNewProduct: dataNewProduct,
       dataSellingProduct: dataSellingProduct,
       dataCategoryProduct: dataCategoryProduct,
-      dataPromotion: dataPromotion,
     },
   };
 }

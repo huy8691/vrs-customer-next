@@ -4,10 +4,11 @@ import { Alert, Button, Row, Col } from "antd";
 import { RightOutlined } from "@ant-design/icons";
 import classes from "../styles.module.scss";
 import { ItemProduct } from "src/components";
+import { messageError } from "src/constants/message.constant";
 import { ProductListDataResponseType, ProductDataType } from "../modelHomePage";
 
 interface Props {
-  dataNewProduct: ProductListDataResponseType["data"] | any;
+  dataNewProduct: ProductListDataResponseType;
 }
 const SectionFlashSellProducts: React.FC<Props> = ({ dataNewProduct }) => {
   console.log("SectionSellingProducts", dataNewProduct);
@@ -24,21 +25,23 @@ const SectionFlashSellProducts: React.FC<Props> = ({ dataNewProduct }) => {
             </a>
           </Link>
         </div>
-        {dataNewProduct.errors ? (
-          <Alert message={dataNewProduct.message} type="error" />
+        {dataNewProduct?.errors ? (
+          <Alert message={messageError} type="error" />
         ) : (
           <Row gutter={20}>
-            {dataNewProduct?.map((item: ProductDataType, index: number) => {
-              return index < 6 ? (
-                <Col
-                  className={classes.item}
-                  key={index + Math.random()}
-                  span={4}
-                >
-                  <ItemProduct dataProduct={item} />
-                </Col>
-              ) : null;
-            })}
+            {dataNewProduct?.data?.map(
+              (item: ProductDataType, index: number) => {
+                return index < 6 ? (
+                  <Col
+                    className={classes.item}
+                    key={index + Math.random()}
+                    span={4}
+                  >
+                    <ItemProduct dataProduct={item} />
+                  </Col>
+                ) : null;
+              }
+            )}
           </Row>
         )}
       </div>

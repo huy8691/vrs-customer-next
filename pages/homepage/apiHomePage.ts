@@ -1,7 +1,12 @@
 import { AxiosResponse } from "axios";
 import { callAPI } from "src/services/jwt-axios";
-import { ProductListDataResponseType, PromotionListDataResponseType } from "./modelHomePage";
+import {
+  ProductListDataResponseType,
+  PromotionListDataResponseType,
+  OutstandingFarmListDataResponseType,
+} from "./modelHomePage";
 
+// list products
 const getNewProductList = (): Promise<
   AxiosResponse<ProductListDataResponseType>
 > => {
@@ -32,6 +37,7 @@ const getCategoryProduct = (): Promise<
   });
 };
 
+// promotion
 const getPromotion = (): Promise<
   AxiosResponse<PromotionListDataResponseType>
 > => {
@@ -42,4 +48,21 @@ const getPromotion = (): Promise<
   });
 };
 
-export { getNewProductList, getSellingProductList, getCategoryProduct, getPromotion };
+// outstanding farm
+const getOutstandingFarm = (): Promise<
+  AxiosResponse<OutstandingFarmListDataResponseType>
+> => {
+  return callAPI({
+    url: `/suppliers/top/suppliers`,
+    method: "get",
+    params: {},
+  });
+};
+
+export {
+  getNewProductList,
+  getSellingProductList,
+  getCategoryProduct,
+  getPromotion,
+  getOutstandingFarm,
+};

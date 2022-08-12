@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import Link from "next/link";
+import moment from "moment";
 import Image from "next/image";
-import { Alert } from "antd";
+import { Alert, Space } from "antd";
 import Slider from "react-slick";
 import {
   PromotionDataType,
   PromotionListDataResponseType,
 } from "../modelHomePage";
+import { messageError } from "src/constants/message.constant";
 import classes from "../styles.module.scss";
 
 interface Props {
-  dataPromotion: PromotionListDataResponseType["data"] | any;
+  dataPromotion: PromotionListDataResponseType;
 }
 const SectionPromotion: React.FC<Props> = ({ dataPromotion }) => {
   console.log("dataPromotion", dataPromotion);
@@ -18,8 +19,9 @@ const SectionPromotion: React.FC<Props> = ({ dataPromotion }) => {
   const [nav2, setNav2] = useState();
   const detailSlide1 = {
     dots: true,
-    infinite: dataPromotion?.length > 5 ? true : false,
-    slidesToShow: dataPromotion?.length > 5 ? 5 : dataPromotion?.length,
+    infinite: dataPromotion?.data?.length > 5 ? true : false,
+    slidesToShow:
+      dataPromotion?.data?.length > 5 ? 5 : dataPromotion?.data?.length,
     slidesToScroll: 1,
     vertical: true,
     verticalSwiping: true,
@@ -39,7 +41,7 @@ const SectionPromotion: React.FC<Props> = ({ dataPromotion }) => {
     <div className={classes.rowSlideShow}>
       {dataPromotion.errors ? (
         <div className="container">
-          <Alert message={dataPromotion.message} type="error" />
+          <Alert message={messageError} type="error" />
         </div>
       ) : (
         <>
@@ -49,13 +51,20 @@ const SectionPromotion: React.FC<Props> = ({ dataPromotion }) => {
               asNavFor={nav2}
               ref={(c: any) => setNav1(c)}
             >
-              {dataPromotion?.map((item: PromotionDataType, idx: number) => {
-                return (
-                  <div className={classes.item} key={idx}>
-                    <h3>{item?.name}</h3>
-                  </div>
-                );
-              })}
+              {dataPromotion?.data?.map(
+                (item: PromotionDataType, idx: number) => {
+                  return (
+                    <div className={classes.item} key={idx}>
+                      <h3 className={classes.name}>{item?.name}</h3>
+                      <Space>
+                        {moment(item?.from).format("DD/MM/YYYY")}
+                        <span>đến</span>
+                        {moment(item?.to).format("DD/MM/YYYY")}
+                      </Space>
+                    </div>
+                  );
+                }
+              )}
             </Slider>
           </div>
           <div className={classes.slideShowBig}>
@@ -64,20 +73,22 @@ const SectionPromotion: React.FC<Props> = ({ dataPromotion }) => {
               asNavFor={nav1}
               ref={(c: any) => setNav2(c)}
             >
-              {dataPromotion?.map((item: PromotionDataType, idx: number) => {
-                return (
-                  <div key={idx}>
-                    <Image
-                      alt={item?.name}
-                      src={item.featureImage.url}
-                      layout="fixed"
-                      width="1920"
-                      height="400"
-                      objectFit="cover"
-                    />
-                  </div>
-                );
-              })}
+              {dataPromotion?.data?.map(
+                (item: PromotionDataType, idx: number) => {
+                  return (
+                    <div key={idx}>
+                      <Image
+                        alt={item?.name}
+                        src={item.featureImage.url}
+                        layout="fixed"
+                        width="1920"
+                        height="400"
+                        objectFit="cover"
+                      />
+                    </div>
+                  );
+                }
+              )}
             </Slider>
           </div>
         </>

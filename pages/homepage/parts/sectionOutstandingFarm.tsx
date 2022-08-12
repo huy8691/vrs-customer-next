@@ -1,87 +1,130 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Alert } from "antd";
+import { Alert, Button, Space } from "antd";
+import {
+  ArrowRightOutlined,
+  LeftOutlined,
+  RightOutlined,
+} from "@ant-design/icons";
 import Slider from "react-slick";
 import {
-  PromotionDataType,
-  PromotionListDataResponseType,
+  OutstandingFarmDataType,
+  OutstandingFarmListDataResponseType,
 } from "../modelHomePage";
+import { messageError } from "src/constants/message.constant";
 import classes from "../styles.module.scss";
 
 interface Props {
-  dataPromotion: PromotionListDataResponseType["data"] | any;
+  dataOutstandingFarm: OutstandingFarmListDataResponseType;
 }
-const SectionOutstandingFarm: React.FC<Props> = ({ dataPromotion }) => {
-  console.log("dataPromotion", dataPromotion);
-  const [nav1, setNav1] = useState();
-  const [nav2, setNav2] = useState();
-  const detailSlide1 = {
+function SampleNextArrow(props: any) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      onClick={onClick}
+      className={`${classes.customArrow} ${classes.customArrowNext} ${className}`}
+    >
+      <RightOutlined />
+    </div>
+  );
+}
+
+function SamplePrevArrow(props: any) {
+  const { className, style, onClick } = props;
+  return (
+    <div onClick={onClick} className={`${classes.customArrow} ${className}`}>
+      <LeftOutlined />
+    </div>
+  );
+}
+
+const SectionOutstandingFarm: React.FC<Props> = ({ dataOutstandingFarm }) => {
+  const settingSlide = {
+    customPaging: function (i: number) {
+      return <div>{i + 1}</div>;
+    },
     dots: true,
-    infinite: dataPromotion?.length > 5 ? true : false,
-    slidesToShow: dataPromotion?.length > 5 ? 5 : dataPromotion?.length,
+    className: `${classes.customSlide}`,
+    dotsClass: `slick-dots slick-thumb ${classes.customPaging}`,
+    infinite: false,
+    slidesToShow: 1,
     slidesToScroll: 1,
-    vertical: true,
-    verticalSwiping: true,
     focusOnSelect: true,
     centerMode: true,
-    centerPadding: "0px",
-    autoplay: true,
+    centerPadding: "30%",
+    autoplay: dataOutstandingFarm?.data?.length > 3 ? true : false,
+    arrows: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
   };
-  const detailSlide2 = {
-    slidesToShow: 1,
-    arrows: false,
-    dots: true,
-    autoplay: true,
-    autoplaySpeed: 7000,
-  };
+
   return (
-    <div className={classes.rowSlideShow}>
-      {dataPromotion.errors ? (
-        <div className="container">
-          <Alert message={dataPromotion.message} type="error" />
+    <div className={classes.sectionOutstandingFarm}>
+      <div className="container">
+        <div className={classes.topContent}>
+          <Space direction="vertical" size="middle">
+            <h2>Trang trại nổi bật</h2>
+            <div>Những trang trại được ưa chuộng nhất, với chất lượng cao.</div>
+            <Link href="/san-pham">
+              <a>
+                <Button type="primary" block size="large">
+                  Xem thêm
+                </Button>
+              </a>
+            </Link>
+          </Space>
         </div>
-      ) : (
-        <>
-          <div className={classes.slideShowSmall}>
-            <Slider
-              {...detailSlide1}
-              asNavFor={nav2}
-              ref={(c: any) => setNav1(c)}
-            >
-              {dataPromotion?.map((item: PromotionDataType, idx: number) => {
-                return (
-                  <div className={classes.item} key={idx}>
-                    <h3>{item?.name}</h3>
-                  </div>
-                );
-              })}
-            </Slider>
+      </div>
+      <div className={classes.slideShowOutstandingFarm}>
+        {dataOutstandingFarm.errors ? (
+          <div className="container">
+            <div className={classes.error}>
+              <Alert message={messageError} type="error" />
+            </div>
           </div>
-          <div className={classes.slideShowBig}>
-            <Slider
-              {...detailSlide2}
-              asNavFor={nav1}
-              ref={(c: any) => setNav2(c)}
-            >
-              {dataPromotion?.map((item: PromotionDataType, idx: number) => {
-                return (
-                  <div key={idx}>
-                    <Image
-                      alt={item?.name}
-                      src={item.featureImage.url}
-                      layout="fixed"
-                      width="1920"
-                      height="400"
-                      objectFit="fill"
-                    />
-                  </div>
-                );
-              })}
+        ) : (
+          <>
+            <Slider {...settingSlide}>
+              {dataOutstandingFarm?.data?.map(
+                (item: OutstandingFarmDataType, idx: number) => {
+                  return (
+                    <div className={classes.item} key={idx}>
+                      <div className={classes.itemInner}>
+                        {!item?.isFake && (
+                          <div className={`${classes.itemContent} itemContent`}>
+                            <h3 className={classes.name}>
+                              {item?.supplier?.name}
+                            </h3>
+                            <div>{item?.supplier?.address}</div>
+                            <div className={classes.totalProducts}>
+                              <Space size="middle">
+                                <span>
+                                  {item?.supplier?.totalProducts} sản phẩm
+                                </span>
+                                <ArrowRightOutlined />
+                              </Space>
+                            </div>
+                          </div>
+                        )}
+                        <div className={classes.itemImage}>
+                          <Image
+                            alt={item?.supplier?.name}
+                            src={item?.supplier?.avatar}
+                            width="760"
+                            height="450"
+                            objectFit="cover"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+              )}
             </Slider>
-          </div>
-        </>
-      )}
+          </>
+        )}
+      </div>
     </div>
   );
 };

@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Col, Row, Alert } from "antd";
+import { messageError } from "src/constants/message.constant";
 import classes from "../styles.module.scss";
 import {
-  PromotionListDataResponseType,
+  CategoryProductListDataResponseType,
   CategoryProductDataType,
 } from "../modelHomePage";
 interface Props {
-  dataCategoryProduct: PromotionListDataResponseType["data"] | any;
+  dataCategoryProduct: CategoryProductListDataResponseType;
 }
 const SectionCategoryProduct: React.FC<Props> = ({ dataCategoryProduct }) => {
+  console.log("dataCategoryProduct", dataCategoryProduct?.data);
   return (
     <section className={classes.sectionCategory}>
       <div className="container">
@@ -24,19 +26,23 @@ const SectionCategoryProduct: React.FC<Props> = ({ dataCategoryProduct }) => {
           của người dùng.
         </div>
         <div className={classes.listCategory}>
-          {dataCategoryProduct.errors ? (
-            <Alert message={dataCategoryProduct.message} type="error" />
+          {dataCategoryProduct?.errors ? (
+            <Alert message={messageError} type="error" />
           ) : (
             <Row gutter={20}>
-              {dataCategoryProduct?.map(
+              {dataCategoryProduct?.data?.map(
                 (item: CategoryProductDataType, index: number) => {
                   return index < 9 ? (
                     <Col sm={12} md={6} key={index + Math.random()}>
                       <div className={classes.item}>
                         <div className={classes.name}>{item.name}</div>
-                        <div className={classes.image}>
-                          <img alt={item.name} src={item.image} />
-                        </div>
+                        <Image
+                          alt={item.name}
+                          src={item.image}
+                          width="270"
+                          height="130"
+                          objectFit="cover"
+                        />
                       </div>
                     </Col>
                   ) : null;

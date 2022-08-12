@@ -26,6 +26,7 @@ const nextConfig = {
       ],
     },
   ],
+  
 };
 
 module.exports =withLess(nextConfig) ;

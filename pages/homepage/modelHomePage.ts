@@ -7,7 +7,8 @@ export interface ProductDataType {
 }
 
 export interface ProductListDataResponseType {
-  data: ProductDataType[];
+  data?: ProductDataType[];
+  errors?: any,
 }
 
 // category
@@ -17,18 +18,37 @@ export interface CategoryProductDataType {
 }
 
 export interface CategoryProductListDataResponseType {
-  data: CategoryProductDataType[];
+  data?: CategoryProductDataType[];
+  errors?: any,
 }
 
 // promotion
-
 export interface PromotionDataType {
   name: string;
   featureImage: {url:string};
-  errors: string;
-  message: string;
+  from?: string;
+  to?: string;
 }
 
 export interface PromotionListDataResponseType {
   data: PromotionDataType[];
+  errors?: any,
+}
+
+
+// outstanding farm
+
+export interface OutstandingFarmDataType {
+  isFake : boolean;
+  supplier?: {
+    name: string;
+    avatar: string | any;
+    address:string;
+    totalProducts: number;
+  };
+}
+
+export interface OutstandingFarmListDataResponseType {
+  data: OutstandingFarmDataType[];
+  errors?: any,
 }

@@ -4,10 +4,11 @@ import { Alert, Button, Row, Col } from "antd";
 import { RightOutlined } from "@ant-design/icons";
 import classes from "../styles.module.scss";
 import { ItemProduct } from "src/components";
+import { messageError } from "src/constants/message.constant";
 import { ProductDataType, ProductListDataResponseType } from "../modelHomePage";
 
 interface Props {
-  dataSellingProduct: ProductListDataResponseType["data"] | any;
+  dataSellingProduct: ProductListDataResponseType;
 }
 const SectionSellingProducts: React.FC<Props> = ({ dataSellingProduct }) => {
   return (
@@ -24,16 +25,18 @@ const SectionSellingProducts: React.FC<Props> = ({ dataSellingProduct }) => {
           </Link>
         </div>
         {dataSellingProduct.errors ? (
-          <Alert message={dataSellingProduct.message} type="error" />
+          <Alert message={messageError} type="error" />
         ) : (
           <Row gutter={20}>
-            {dataSellingProduct?.map((item: ProductDataType, index: number) => {
-              return index < 6 ? (
-                <Col key={index + Math.random()} span={4}>
-                  <ItemProduct dataProduct={item} />
-                </Col>
-              ) : null;
-            })}
+            {dataSellingProduct?.data?.map(
+              (item: ProductDataType, index: number) => {
+                return index < 6 ? (
+                  <Col key={index + Math.random()} span={4}>
+                    <ItemProduct dataProduct={item} />
+                  </Col>
+                ) : null;
+              }
+            )}
           </Row>
         )}
       </div>
