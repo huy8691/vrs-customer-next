@@ -9,7 +9,7 @@ import { AccountDataType } from "./modelAccount";
 import { loadingActions } from "src/store/loading/loadingSlice";
 // layout
 import type { ReactElement } from "react";
-import Layout from "src/layout";
+import Layout from "src/layout/layout";
 import NestedLayout from "src/layout/nestedLayout";
 import type { NextPageWithLayout } from "pages/_app.page";
 
@@ -27,7 +27,7 @@ const Account: NextPageWithLayout = () => {
       })
       .catch((error) => {
         setData({
-          isError: error.response.data,
+          isError: error.response ? error.response.data : true,
         });
         dispatch(loadingActions.doLoadingFailure());
       });

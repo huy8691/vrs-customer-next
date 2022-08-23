@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Input, Badge, Avatar, Dropdown, Menu } from "antd";
+import { Input, Badge, Avatar, Dropdown, Menu, Space, Typography } from "antd";
 import Cookies from "js-cookie";
 import PopupAccount from "./parts/popupAccount";
 import MainMenu from "./parts/mainMenu";
-import { useAppDispatch } from "src/store/hooks";
+import { useAppDispatch, useAppSelector } from "src/store/hooks";
 
 import {
   SearchOutlined,
@@ -25,9 +25,12 @@ const suffix = (
     }}
   />
 );
+
 const Header = ({}) => {
   const token = Boolean(Cookies.get("token"));
   const router = useRouter();
+  const login = useAppSelector((state) => state.login);
+
   const dispatch = useAppDispatch();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
   const handleLogout = () => {
@@ -65,6 +68,10 @@ const Header = ({}) => {
   useEffect(() => {
     setIsLoggedIn(token);
   }, [token]);
+
+  useEffect(() => {
+    console.log("login", login);
+  }, [login]);
   return (
     <header className={classes.header}>
       <div className="container">
@@ -122,7 +129,14 @@ const Header = ({}) => {
                 </div>
                 <div className={classes.itemUser}>
                   <Dropdown overlay={menu} placement="bottom" arrow>
-                    <Avatar src="https://joeschmoe.io/api/v1/random" />
+                    <Space size={5}>
+                      <Avatar src={login.data?.userInfo?.avatar}>
+                        {login.data?.userInfo?.fullName?.charAt(0)}
+                      </Avatar>
+                      <div className={classes.itemUserName}>
+                        {login.data?.userInfo?.fullName}
+                      </div>
+                    </Space>
                   </Dropdown>
                 </div>
               </div>

@@ -16,7 +16,7 @@ const SectionSellingProducts: React.FC<Props> = ({ dataSellingProduct }) => {
       <div className="container">
         <div className={classes.sectionProductsHead}>
           <div className={classes.sectionProductsTitle}>Sản phẩm bán chạy</div>
-          <Link href="/san-pham">
+          <Link href="/san-pham?sort=soldQuantity">
             <a>
               <Button type="primary">
                 Xem thêm <RightOutlined style={{ fontSize: "9px" }} />

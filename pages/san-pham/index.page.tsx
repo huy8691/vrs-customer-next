@@ -24,7 +24,7 @@ import { ProductListDataResponseType } from "./modelProducts";
 import { objToStringParam, isEmptyObject } from "src/utils/global.utils";
 // layout
 import type { ReactElement } from "react";
-import Layout from "src/layout";
+import Layout from "src/layout/layout";
 import type { NextPageWithLayout } from "pages/_app.page";
 
 const tabsData = [

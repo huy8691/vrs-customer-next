@@ -7,26 +7,22 @@ import { setAuthToken } from "src/services/jwt-axios";
 import { LoginResponseType, LoginType, UserInfoType } from "./loginModels";
 
 interface initialLoginStateType {
-  isLoading: boolean;
   data?: {
     access_token: string;
-    info: UserInfoType;
+    userInfo: UserInfoType;
   };
 }
 
 const initialState: initialLoginStateType = {
-  isLoading: false,
   data: {
     access_token: "",
-    info: {
-      firstName: "",
-      lastName: "",
-      address: "",
-      phoneNumber: "",
-      dob: undefined,
-      gender: undefined,
+    userInfo: {
+      avatar: "",
       email: "",
+      fullName: "",
       id: 0,
+      phoneNumber: "",
+      status: 0,
     },
   },
 };
@@ -35,24 +31,19 @@ const loginSlice = createSlice({
   name: "login",
   initialState,
   reducers: {
-    doLogin(state: initialLoginStateType, _action: PayloadAction<LoginType>) {
-      state.isLoading = true;
-    },
+    doLogin(state: initialLoginStateType, _action: PayloadAction<LoginType>) {},
     doLoginSuccess(
       state: initialLoginStateType,
       action: PayloadAction<LoginResponseType>
     ) {
       const { data }: LoginResponseType = action.payload;
-      state.isLoading = false;
       if (state.data) {
         state.data.access_token = data.access_token;
-        state.data.info = data.userInfo;
+        state.data.userInfo = data.userInfo;
       }
       setAuthToken(data.access_token);
     },
-    doLoginFailure(state: initialLoginStateType) {
-      state.isLoading = false;
-    },
+    doLoginFailure(state: initialLoginStateType) {},
     doLogout(state: initialLoginStateType) {
       state.data = undefined;
     },

@@ -7,7 +7,7 @@ import {
   getPromotion,
   getOutstandingFarm,
 } from "./homepage/apiHomePage";
-import Layout from "src/layout";
+import Layout from "src/layout/layout";
 import type { NextPageWithLayout } from "pages/_app.page";
 import SectionPromotion from "./homepage/parts/sectionPromotion";
 import SectionOutstandingFarm from "./homepage/parts/sectionOutstandingFarm";

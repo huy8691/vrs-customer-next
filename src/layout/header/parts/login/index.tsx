@@ -1,73 +1,76 @@
 import React from "react";
 import { useAppDispatch } from "src/store/hooks";
 import { Button, Checkbox, Form, Input } from "antd";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { LoginType } from "./loginModels";
 import { loginActions } from "./loginSlice";
+import { useForm, Controller } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { schema } from "./validations";
 
 const Login = () => {
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
   const dispatch = useAppDispatch();
-  const onFinish = (values: LoginType) => {
+
+  const onSubmit = (values: any) => {
     dispatch(loginActions.doLogin(values));
   };
 
-  const onFinishFailed = (errorInfo:any) => {
-    console.log("Failed:", errorInfo);
-  };
-
   return (
-    <Form
-      name="basic"
-      labelCol={{
-        span: 8,
-      }}
-      wrapperCol={{
-        span: 16,
-      }}
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      <Form.Item
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Controller
+        control={control}
         name="identity"
-        rules={[
-          {
-            required: true,
-            message: "Please input your username!",
-          },
-        ]}
-      >
-        <Input placeholder="Email/ số điện thoại" />
-      </Form.Item>
-
-      <Form.Item
+        render={({ field }) => (
+          <Form.Item
+            validateStatus={errors.identity && "error"}
+            help={errors.identity && `${errors.identity.message}`}
+          >
+            <Input
+              {...field}
+              prefix={<UserOutlined />}
+              placeholder="Email/ số điện thoại"
+            />
+          </Form.Item>
+        )}
+      />
+      <Controller
+        control={control}
         name="password"
-        rules={[
-          {
-            required: true,
-            message: "Please input your password!",
-          },
-        ]}
-      >
-        <Input.Password placeholder="Mật khẩu" />
-      </Form.Item>
-
-      {/* <Form.Item
+        render={({ field }) => (
+          <Form.Item
+            validateStatus={errors.password && "error"}
+            help={errors.password && `${errors.password.message}`}
+          >
+            <Input.Password
+              {...field}
+              prefix={<LockOutlined />}
+              placeholder="Mật khẩu"
+            />
+          </Form.Item>
+        )}
+      />
+      <Controller
+        control={control}
         name="remember"
-        valuePropName="checked"
-        
-      >
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item> */}
-
+        render={({ field }) => (
+          <Form.Item valuePropName="checked">
+            <Checkbox {...field}>Lưu mật khẩu</Checkbox>
+          </Form.Item>
+        )}
+      />
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" block>
           Đăng nhập
         </Button>
       </Form.Item>
-    </Form>
+    </form>
   );
 };
 

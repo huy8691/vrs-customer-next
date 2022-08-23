@@ -1,7 +1,7 @@
-import React, {ReactElement} from "react";
+import React, { ReactElement } from "react";
 import Link from "next/link";
 // layout
-import Layout from "src/layout";
+import Layout from "src/layout/layout";
 import type { NextPageWithLayout } from "pages/_app.page";
 
 import { Button, Result } from "antd";
@@ -24,7 +24,6 @@ const Custom404: NextPageWithLayout = () => {
     </div>
   );
 };
-
 
 Custom404.getLayout = function getLayout(page: ReactElement) {
   return <Layout>{page}</Layout>;

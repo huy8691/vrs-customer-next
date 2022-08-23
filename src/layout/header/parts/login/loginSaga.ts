@@ -5,33 +5,35 @@
 import { AxiosResponse } from "axios";
 import Cookies from "js-cookie";
 import { call, delay, put, takeLatest } from "redux-saga/effects";
-import {login} from "./loginAPI";
+import { loginAPI } from "./loginAPI";
 import { LoginResponseType } from "./loginModels";
 import { loginActions } from "./loginSlice";
-import {loadingActions} from 'src/store/loading/loadingSlice';
-import {notificationActions} from 'src/store/notification/notificationSlice';
-
+import { loadingActions } from "src/store/loading/loadingSlice";
+import { notificationActions } from "src/store/notification/notificationSlice";
 
 function* handleLogin({ payload }: ReturnType<typeof loginActions.doLogin>) {
   try {
     yield put(loadingActions.doLoading());
     const { data }: AxiosResponse<LoginResponseType> = yield call(
-      login,
+      loginAPI,
       payload
     );
+    console.log("data",data)
     yield put(loginActions.doLoginSuccess(data));
     yield put(loadingActions.doLoadingSuccess());
-    window.location.reload()
-    // yield put(notificationActions.doNotification({
-    //   message:"Đăng nhập thành công",
-    // }));
-  } catch (error:any) {
+    yield put(notificationActions.doNotification({
+      message:"Đăng nhập thành công",
+    }));
+    window.location.reload();
+  } catch (error: any) {
     yield put(loginActions.doLoginFailure());
     yield put(loadingActions.doLoadingFailure());
-    yield put(notificationActions.doNotification({
-      message: error.response.data.message,
-      type:"error",
-    }));
+    yield put(
+      notificationActions.doNotification({
+        message: error.response.data.message,
+        type: "error",
+      })
+    );
   }
 }
 

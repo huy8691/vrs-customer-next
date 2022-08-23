@@ -10,7 +10,7 @@ import classes from "./styles.module.scss";
 
 // layout
 import type { ReactElement } from "react";
-import Layout from "src/layout";
+import Layout from "src/layout/layout";
 import type { NextPageWithLayout } from "pages/_app.page";
 
 const ProductDetail: NextPageWithLayout = (data: any) => {

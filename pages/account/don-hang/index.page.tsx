@@ -9,7 +9,7 @@ import { ProductDataType } from "./modelProducts";
 
 // layout
 import type { ReactElement } from "react";
-import Layout from "src/layout";
+import Layout from "src/layout/layout";
 import NestedLayout from "src/layout/nestedLayout";
 import type { NextPageWithLayout } from "pages/_app.page";
 
@@ -23,11 +23,10 @@ const Orders: NextPageWithLayout = () => {
       })
       .catch((error) => {
         // return error.response.data;
+        console.error("adsad", error);
       });
   }, []);
-  return (
-    <div>Nội dung</div>
-  );
+  return <div>Nội dung</div>;
 };
 
 Orders.getLayout = function getLayout(page: ReactElement) {

@@ -45,6 +45,7 @@ callAPIWithToken.interceptors.response.use(
     return res;
   },
   (err) => {
+    console.log("err", err)
     if (err.response && err.response.status === 401) {
       Cookies.remove("token");
       window.location.href = "/";

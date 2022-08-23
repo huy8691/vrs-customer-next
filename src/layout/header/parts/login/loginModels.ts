@@ -3,6 +3,15 @@ export interface LoginType {
   password: string;
 }
 
+
+export interface UserInfoType {
+  avatar?: string| null;
+  email?: string;
+  fullName?: string;
+  id?: number;
+  phoneNumber?: string;
+  status?: number;
+}
 export interface LoginResponseType {
   data: {
     access_token: string;
@@ -10,13 +19,3 @@ export interface LoginResponseType {
   };
 }
 
-export interface UserInfoType {
-  firstName: string;
-  lastName: string;
-  address: string;
-  phoneNumber?: string;
-  dob?: Date;
-  gender?: "MALE" | "FEMALE" | "ORTHER";
-  email: string;
-  id: number;
-}

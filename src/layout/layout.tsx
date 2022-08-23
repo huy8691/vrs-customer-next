@@ -7,6 +7,9 @@ import { useAppSelector } from "src/store/hooks";
 import { Provider } from "react-redux";
 import { store } from "src/store/store";
 import classes from "./styles.module.scss";
+import { ConfigProvider } from "antd";
+import vi_VN from "antd/lib/locale/vi_VN";
+import "moment/locale/vi";
 
 type Props = {
   children: JSX.Element;
@@ -45,7 +48,7 @@ const Layout = ({ children }: Props) => {
   const { asPath } = useRouter();
   return (
     <Provider store={store}>
-      <>
+      <ConfigProvider locale={vi_VN}>
         <Header />
         {asPath !== "/" && (
           <div className="section-banner">
@@ -54,7 +57,7 @@ const Layout = ({ children }: Props) => {
         )}
         <LayoutInner>{children}</LayoutInner>
         <Footer />
-      </>
+      </ConfigProvider>
     </Provider>
   );
 };
