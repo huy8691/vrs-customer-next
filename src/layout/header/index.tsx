@@ -14,6 +14,7 @@ import {
   AuditOutlined,
 } from "@ant-design/icons";
 import { loginActions } from "./parts/login/loginSlice";
+import { userInfoActions } from "src/store/userInfo/userInfoSlice";
 import classes from "./styles.module.scss";
 
 const { Search } = Input;
@@ -29,10 +30,14 @@ const suffix = (
 const Header = ({}) => {
   const token = Boolean(Cookies.get("token"));
   const router = useRouter();
-  const login = useAppSelector((state) => state.login);
-
   const dispatch = useAppDispatch();
+
+  // state
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>();
+
+  // reducer
+  const userInfoReducer = useAppSelector((state) => state.userInfo);
+
   const handleLogout = () => {
     dispatch(loginActions.doLogout());
   };
@@ -67,11 +72,11 @@ const Header = ({}) => {
 
   useEffect(() => {
     setIsLoggedIn(token);
+    if (token) {
+      dispatch(userInfoActions.doUserInfo());
+    }
   }, [token]);
 
-  useEffect(() => {
-    console.log("login", login);
-  }, [login]);
   return (
     <header className={classes.header}>
       <div className="container">
@@ -130,11 +135,11 @@ const Header = ({}) => {
                 <div className={classes.itemUser}>
                   <Dropdown overlay={menu} placement="bottom" arrow>
                     <Space size={5}>
-                      <Avatar src={login.data?.userInfo?.avatar}>
-                        {login.data?.userInfo?.fullName?.charAt(0)}
+                      <Avatar src={userInfoReducer?.data?.avatar}>
+                        {userInfoReducer?.data?.fullName?.charAt(0)}
                       </Avatar>
                       <div className={classes.itemUserName}>
-                        {login.data?.userInfo?.fullName}
+                        {userInfoReducer?.data?.fullName}
                       </div>
                     </Space>
                   </Dropdown>

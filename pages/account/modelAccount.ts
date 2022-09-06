@@ -1,17 +1,14 @@
-export interface AccountDataType {
-  dob?: string,
-  email?: string,
-  fullName?: string
-  gender?: string,
-  id?: number,
-  phoneNumber?: number
-  userId?: number,
-  isError? : {
-    message: string,
-  }
+export interface UserDataType {
+  dob: string;
+  fullName: string;
+  gender: string;
+  email: string;
+}
+
+export interface PassWordDataType {
+  currentPassword: string;
+  newPassword: string;
+  passwordConfirmation: string;
 }
 
 
-export interface AccountDataResponseType {
-  data: AccountDataType;
-}

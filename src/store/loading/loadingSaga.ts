@@ -3,8 +3,6 @@ import { loadingActions } from "./loadingSlice";
 
 function* handleLoading() {
 }
-
-
 function* loadingSaga() {
   yield takeLatest(loadingActions.doLoading.type, handleLoading);
 }

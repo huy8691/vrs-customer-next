@@ -45,13 +45,13 @@ callAPIWithToken.interceptors.response.use(
     return res;
   },
   (err) => {
-    console.log("err", err)
     if (err.response && err.response.status === 401) {
-      Cookies.remove("token");
       window.location.href = "/";
+      Cookies.remove("token");
     }
     if (err.response && err.response.status === 403) {
       window.location.href = "/403";
+      Cookies.remove("token");
     }
     return Promise.reject(err);
   }

@@ -203,6 +203,7 @@ const Products: NextPageWithLayout = () => {
             total={dataProducts?.total}
             pageSize={20}
             onChange={handleChangePagination}
+            showSizeChanger={false}
           />
         )}
       </Space>

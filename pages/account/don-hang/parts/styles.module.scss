@@ -1,0 +1,18 @@
+.listProduct {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -15px;
+  .item{
+    padding: 0 15px;
+    margin-bottom: 5px;
+  }
+}
+.itemInfo{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -15px;
+  > * {
+    padding: 0 15px;
+    margin-bottom: 5px;
+  }
+}

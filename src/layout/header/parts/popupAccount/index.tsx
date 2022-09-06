@@ -13,7 +13,6 @@ const { Title } = Typography;
 const PopupAccount = () => {
   const [visible, setVisible] = useState(false);
   const [tabActive, setTabActive] = useState("1");
-  // const login = useAppSelector((state) => state.login);
   const register = useAppSelector((state) => state.register);
   const showModal = () => {
     setVisible(true);
@@ -27,13 +26,6 @@ const PopupAccount = () => {
     console.log(key);
     setTabActive(key);
   };
-
-  // useEffect(() => {
-  //   if (login.data?.access_token) {
-  //     setVisible(false);
-  //     setTabActive("1");
-  //   }
-  // }, [login]);
 
   useEffect(() => {
     if (register.data) {
@@ -103,11 +95,7 @@ const PopupAccount = () => {
               </div>
 
               <Tabs activeKey={tabActive} onChange={onChange} centered>
-                <TabPane
-                  tab="Đăng nhập"
-                  key="1"
-                  // style={{ display: "block !important" }}
-                >
+                <TabPane tab="Đăng nhập" key="1">
                   <div className={classes.tabContent}>
                     <Login />
                     <Space size="large" className={classes.tabContentBottom}>
@@ -120,11 +108,7 @@ const PopupAccount = () => {
                     </Space>
                   </div>
                 </TabPane>
-                <TabPane
-                  tab="Đăng ký"
-                  key="2"
-                  // style={{ display: "block !important" }}
-                >
+                <TabPane tab="Đăng ký" key="2">
                   <div className={classes.tabContent}>
                     <Register />
                   </div>

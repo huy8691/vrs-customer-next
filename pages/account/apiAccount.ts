@@ -1,16 +1,22 @@
 import { AxiosResponse } from "axios";
 import {callAPIWithToken} from "src/services/jwt-axios";
-import { AccountDataResponseType } from "./modelAccount";
+import { UserDataType , PassWordDataType} from "./modelAccount";
 
-const getInfoAccount = (
-): Promise<AxiosResponse<AccountDataResponseType>> => {
+const updateInfoUser = (data:UserDataType): Promise<AxiosResponse> => {
   return callAPIWithToken({
     url: `/customers/me`,
-    method: 'get',
-    params: {
-    },
+    method: 'patch',
+    data: data
   })
 }
-export  { getInfoAccount};
+
+const updatePasswordUser = (data:PassWordDataType): Promise<AxiosResponse> => {
+    return callAPIWithToken({
+      url: `/auth/me/password`,
+      method: 'patch',
+      data: data
+    })
+  }
+export  { updateInfoUser, updatePasswordUser};
 
 
