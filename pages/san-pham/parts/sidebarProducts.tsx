@@ -180,7 +180,7 @@ const SideBarProducts: React.FC = () => {
         router.query.maxPrice ? router.query.maxPrice[0] : ""
       );
     }
-  }, [router]);
+  }, [router, form, queryUrl]);
 
   return (
     <div>

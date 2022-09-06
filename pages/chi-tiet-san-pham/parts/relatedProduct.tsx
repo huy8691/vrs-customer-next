@@ -34,7 +34,7 @@ const RelatedProduct: React.FC = () => {
           dispatch(loadingActions.doLoadingFailure());
         });
     }
-  }, [router]);
+  }, [router, dispatch]);
 
   const renderResult = () => {
     if (dataProducts?.errors) {

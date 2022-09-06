@@ -92,7 +92,7 @@ const ComponentProduct: React.FC = () => {
           dispatch(loadingActions.doLoadingFailure());
         });
     }
-  }, [router]);
+  }, [router, dispatch]);
 
   const renderResult = () => {
     if (dataComponent?.errors) {
