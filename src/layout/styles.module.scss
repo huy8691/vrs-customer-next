@@ -1,24 +1,24 @@
-.loading{
+.loading {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 100000;
 }
-.requireAuth{
+.requireAuth {
   min-height: 70vh;
 }
 
-.layoutInner{
+.layoutInner {
   padding-top: 30px;
-  padding-bottom:30px;
+  padding-bottom: 30px;
 }
 
 // NestedLayout
-.nestedLayout{
+.nestedLayout {
   margin-top: -50px;
-  padding-bottom:30px;
-  .colMenuNestedLayout{
+  padding-bottom: 30px;
+  .colMenuNestedLayout {
     position: relative;
     padding-top: 20px;
     &:after {
@@ -29,25 +29,25 @@
       display: inline-block;
       width: 2px;
       height: 100vh;
-      max-height:100%;
-      background-color: #F0F0F0;
+      max-height: 100%;
+      background-color: #f0f0f0;
     }
-    .colMenuNestedLayoutUser{
+    .colMenuNestedLayoutUser {
       display: flex;
       flex-direction: column;
       align-items: center;
       margin-bottom: 25px;
-      .name{
-        font-size:20px;
+      .name {
+        font-size: 20px;
         color: black;
       }
     }
   }
-  .colContentNestedLayout{
+  .colContentNestedLayout {
     padding-left: 15px;
-    .colContentNestedLayoutHeader{
+    .colContentNestedLayoutHeader {
       margin-bottom: 30px;
-      padding-bottom:10px;
+      padding-bottom: 10px;
       padding-top: 15px;
       display: flex;
       align-items: center;
@@ -62,19 +62,19 @@
         display: inline-block;
         width: calc(100% + 30px);
         height: 2px;
-        background-color: #F0F0F0;
+        background-color: #f0f0f0;
       }
-      .icon{
+      .icon {
         margin-right: 10px;
       }
     }
   }
 }
 
-.menu{
-  .menuItem{
+.menu {
+  .menuItem {
     margin-bottom: 10px;
-    .icon{
+    .icon {
       margin-right: 15px;
     }
   }

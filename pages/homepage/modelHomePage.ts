@@ -1,14 +1,14 @@
 export interface ProductDataType {
   id: number;
   name: string;
-  thumbnails: Array<{url:string}>;
-  prices: Array<{price: number}>;
+  thumbnails: Array<{ url: string }>;
+  prices: Array<{ price: number }>;
   unit: string;
 }
 
 export interface ProductListDataResponseType {
   data?: ProductDataType[];
-  errors?: any,
+  errors?: any;
 }
 
 // category
@@ -19,36 +19,35 @@ export interface CategoryProductDataType {
 
 export interface CategoryProductListDataResponseType {
   data?: CategoryProductDataType[];
-  errors?: any,
+  errors?: any;
 }
 
 // promotion
 export interface PromotionDataType {
   name: string;
-  featureImage: {url:string};
+  featureImage: { url: string };
   from?: string;
   to?: string;
 }
 
 export interface PromotionListDataResponseType {
   data: PromotionDataType[];
-  errors?: any,
+  errors?: any;
 }
-
 
 // outstanding farm
 
 export interface OutstandingFarmDataType {
-  isFake : boolean;
+  isFake: boolean;
   supplier?: {
     name: string;
     avatar: string | any;
-    address:string;
+    address: string;
     totalProducts: number;
   };
 }
 
 export interface OutstandingFarmListDataResponseType {
   data: OutstandingFarmDataType[];
-  errors?: any,
+  errors?: any;
 }

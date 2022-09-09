@@ -10,5 +10,3 @@ export interface PassWordDataType {
   newPassword: string;
   passwordConfirmation: string;
 }
-
-

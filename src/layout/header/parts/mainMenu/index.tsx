@@ -22,8 +22,8 @@ const MainMenu = () => {
     {
       label: "Chính sách & điều khoản",
       key: "subMenu1",
-      popupClassName:classes.subMenuCustom,
-      popupOffset:[-55,1],
+      popupClassName: classes.subMenuCustom,
+      popupOffset: [-55, 1],
       children: [
         {
           label: (
@@ -88,8 +88,8 @@ const MainMenu = () => {
     {
       label: "Danh mục",
       key: "subMenu2",
-      popupClassName:classes.subMenuCustom,
-      popupOffset:[-90,1],
+      popupClassName: classes.subMenuCustom,
+      popupOffset: [-90, 1],
       children: [
         {
           label: (
@@ -143,7 +143,6 @@ const MainMenu = () => {
           mode="horizontal"
           items={itemsLeft}
           selectable={false}
-          
           style={{
             background: "none",
             borderBottom: "none",

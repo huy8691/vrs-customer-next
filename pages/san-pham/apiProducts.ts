@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import {callAPI} from "src/services/jwt-axios";
+import { callAPI } from "src/services/jwt-axios";
 import { ProductListDataResponseType } from "./modelProducts";
 
 const getProducts = (
@@ -8,16 +8,12 @@ const getProducts = (
   console.log("parm", params);
   return callAPI({
     url: `/products/customer`,
-    method: 'get',
+    method: "get",
     params: {
       ...params,
       pageSize: 20,
     },
-  })
-}
+  });
+};
 
-
-
-export  { getProducts};
-
-
+export { getProducts };

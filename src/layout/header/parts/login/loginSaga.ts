@@ -18,12 +18,14 @@ function* handleLogin({ payload }: ReturnType<typeof loginActions.doLogin>) {
       loginAPI,
       payload
     );
-    console.log("data",data)
+    console.log("data", data);
     yield put(loginActions.doLoginSuccess(data));
     yield put(loadingActions.doLoadingSuccess());
-    yield put(notificationActions.doNotification({
-      message:"Đăng nhập thành công",
-    }));
+    yield put(
+      notificationActions.doNotification({
+        message: "Đăng nhập thành công",
+      })
+    );
     window.location.reload();
   } catch (error: any) {
     yield put(loginActions.doLoginFailure());

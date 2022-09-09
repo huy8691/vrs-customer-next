@@ -1,59 +1,59 @@
-.footer{
+.footer {
   background-color: #222222;
-  color:rgba(255,255,255,0.75);
+  color: rgba(255, 255, 255, 0.75);
   font-weight: 300;
-  .footerLogo{
+  .footerLogo {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    font-size:20px;
+    font-size: 20px;
     color: white;
-    .footerLogoImage{
+    .footerLogoImage {
       margin-right: 10px;
-      max-width:50px;
+      max-width: 50px;
     }
   }
-  .footerTop{
-    padding-top:40px;
+  .footerTop {
+    padding-top: 40px;
     padding-bottom: 30px;
   }
-  .footerMiddle{
-    padding-top:20px;
+  .footerMiddle {
+    padding-top: 20px;
     padding-bottom: 20px;
-    border-top:1px solid #4C4C4C;
+    border-top: 1px solid #4c4c4c;
   }
-  .footerBottom{
-    background-color:black;
-    padding-top:20px;
+  .footerBottom {
+    background-color: black;
+    padding-top: 20px;
     padding-bottom: 20px;
     text-align: center;
   }
-  .footerMenu{
+  .footerMenu {
     list-style-type: none;
     padding-left: 0;
-    > li{
+    > li {
       margin-bottom: 10px;
     }
   }
-  .footerMenuType2{
+  .footerMenuType2 {
     list-style-type: none;
     padding-left: 0;
-    > ul{
+    > ul {
       list-style-type: disc;
       padding-left: 25px;
       font-size: 13px;
     }
   }
-  .titleMenu{
-    margin-bottom:20px;
-    font-size:20px;
-    color:white;
+  .titleMenu {
+    margin-bottom: 20px;
+    font-size: 20px;
+    color: white;
     margin-top: 10px;
     font-weight: normal;
   }
-  .contact{
+  .contact {
     margin-bottom: 5px;
-    a{
+    a {
       margin-left: 10px;
     }
   }

@@ -1,1 +1,1 @@
-export const messageError = "Đã xảy ra lỗi"
+export const messageError = "Đã xảy ra lỗi";

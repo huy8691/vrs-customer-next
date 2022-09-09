@@ -3,9 +3,8 @@ export interface LoginType {
   password: string;
 }
 
-
 export interface UserInfoType {
-  avatar?: string| null;
+  avatar?: string | null;
   email?: string;
   fullName?: string;
   id?: number;
@@ -18,4 +17,3 @@ export interface LoginResponseType {
     userInfo: UserInfoType;
   };
 }
-

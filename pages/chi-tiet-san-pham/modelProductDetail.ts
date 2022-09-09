@@ -18,15 +18,13 @@ export interface ProductDetailResponseType {
   errors?: any;
 }
 
-
 // list product
 export interface ProductDataType {
   id: number;
   name: string;
-  thumbnails: Array<{url:string}>;
-  prices: Array<{price: number}>;
+  thumbnails: Array<{ url: string }>;
+  prices: Array<{ price: number }>;
   unit: string;
-  
 }
 
 export interface ProductListDataResponseType {
@@ -44,7 +42,7 @@ export interface CommentDataType {
     fullName: string;
   };
   rating: number;
-  created_at: string
+  created_at: string;
 }
 
 export interface CommentListDataResponseType {

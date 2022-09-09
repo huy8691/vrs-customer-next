@@ -1,10 +1,9 @@
 export interface ProductDataType {
   id: number;
   name: string;
-  thumbnails: Array<{url:string}>;
-  prices: Array<{price: number}>;
+  thumbnails: Array<{ url: string }>;
+  prices: Array<{ price: number }>;
   unit: string;
-  
 }
 
 export interface ProductListDataResponseType {

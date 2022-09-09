@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import { Col, Row } from "antd";
-import { PhoneFilled,MailFilled } from '@ant-design/icons';
+import { PhoneFilled, MailFilled } from "@ant-design/icons";
 import classes from "./styles.module.scss";
 
 const Footer = () => {
@@ -45,8 +45,14 @@ const Footer = () => {
                     </li>
                   </ul>
                 </ul>
-                <div className={classes.contact}><PhoneFilled /><a href="tel:0767444411">0767 444 411</a></div>
-                <div className={classes.contact}><MailFilled /><a href="mailto:hotro@vuarausach.vn">hotro@vuarausach.vn</a></div>
+                <div className={classes.contact}>
+                  <PhoneFilled />
+                  <a href="tel:0767444411">0767 444 411</a>
+                </div>
+                <div className={classes.contact}>
+                  <MailFilled />
+                  <a href="mailto:hotro@vuarausach.vn">hotro@vuarausach.vn</a>
+                </div>
               </>
             </Col>
             <Col sm={12} md={6}>
@@ -131,8 +137,9 @@ const Footer = () => {
 
       <div className={classes.footerMiddle}>
         <div className="container">
-          Giấy chứng nhận Đăng ký Kinh doanh số <span style={{textDecoration: 'underline'}}>0316832935</span> do Sở Kế
-          hoạch và Đầu tư Thành phố Hồ Chí Minh cấp ngày 28/04/2021
+          Giấy chứng nhận Đăng ký Kinh doanh số{" "}
+          <span style={{ textDecoration: "underline" }}>0316832935</span> do Sở
+          Kế hoạch và Đầu tư Thành phố Hồ Chí Minh cấp ngày 28/04/2021
         </div>
       </div>
       <div className={classes.footerBottom}>

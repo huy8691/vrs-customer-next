@@ -2,7 +2,9 @@ import { AxiosResponse } from "axios";
 import { callAPI } from "src/services/jwt-axios";
 import { RegisterType, RegisterResponseType } from "./registerModels";
 
-const registerAPI = (data:RegisterType): Promise<AxiosResponse<RegisterResponseType>> => {
+const registerAPI = (
+  data: RegisterType
+): Promise<AxiosResponse<RegisterResponseType>> => {
   return callAPI({
     url: "/customers",
     method: "post",
@@ -19,9 +21,8 @@ const phoneOtpAPI = (data: string): Promise<AxiosResponse> => {
       identity: data,
       method: "SMS",
       format: "NUMBER_ONLY",
-    }
+    },
   });
 };
 
-
-export  {registerAPI, phoneOtpAPI};
+export { registerAPI, phoneOtpAPI };

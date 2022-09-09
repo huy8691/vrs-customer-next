@@ -1,5 +1,5 @@
 export interface OrderListDataResponseType {
-  data?: any
+  data?: any;
   total?: number;
   errors?: any;
 }
